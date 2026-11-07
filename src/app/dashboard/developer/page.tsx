@@ -8,7 +8,7 @@ import { ClearAllDataButton } from "@/components/developer/ClearAllDataButton";
 import { GenerateMockDataButton } from "@/components/developer/GenerateMockDataButton";
 
 export const metadata: Metadata = {
-  title: "Developer Options | JobSync",
+  title: "Opciones de desarrollador",
   description: "Developer tools and utilities for development mode",
 };
 

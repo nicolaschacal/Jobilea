@@ -21,7 +21,7 @@ import WeeklyBarChartToggle from "@/components/dashboard/WeeklyBarChartToggle";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Dashboard",
+  title: "Inicio",
 };
 
 export default async function Dashboard() {
