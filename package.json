@@ -26,7 +26,8 @@
     "eval:mcp-tools": "npm --prefix evals run eval:mcp-tools",
     "eval:agent-chat": "npm --prefix evals run eval:agent-chat",
     "eval:all": "npm --prefix evals run eval:all",
-    "eval:view": "npm --prefix evals run eval:view"
+    "eval:view": "npm --prefix evals run eval:view",
+    "vercel-build": "prisma generate && DATABASE_URL=\"${DATABASE_URL_UNPOOLED:-$DATABASE_URL}\" prisma migrate deploy && next build"
   },
   "dependencies": {
     "@ai-sdk/deepseek": "^2.0.4",

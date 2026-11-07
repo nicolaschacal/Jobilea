@@ -233,7 +233,16 @@ export const APP_CONSTANTS = {
   TELEMETRY_MAX_ATTR_CHARS: 32_000,
 
   // File uploads
-  UPLOADS_DIR: process.env.NODE_ENV !== "production" ? "data" : "/data",
+  // Vercel's filesystem is read-only except /tmp, which does not persist
+  // between invocations: uploaded files there are temporary until resumes move
+  // to object storage.
+  UPLOADS_DIR:
+    process.env.UPLOADS_DIR ??
+    (process.env.VERCEL
+      ? "/tmp/jobilea"
+      : process.env.NODE_ENV !== "production"
+        ? "data"
+        : "/data"),
 
   // Backup caps. Everything is held in RAM at once, so the upload cap is what
   // bounds memory on a box also running Next and the scheduler; the
