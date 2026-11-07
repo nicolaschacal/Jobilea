@@ -21,11 +21,11 @@ async function Header() {
         <SheetTrigger asChild>
           <Button size="icon" variant="outline" className="sm:hidden">
             <PanelLeft className="h-5 w-5" />
-            <span className="sr-only">Toggle Menu</span>
+            <span className="sr-only">Abrir menú</span>
           </Button>
         </SheetTrigger>
         <SheetContent side="left" className="sm:max-w-xs">
-          <SheetTitle className="sr-only">Navigation Menu</SheetTitle>
+          <SheetTitle className="sr-only">Menú</SheetTitle>
           <nav className="grid gap-6 text-lg font-medium">
             <SheetClose asChild>
               <Link
@@ -33,7 +33,7 @@ async function Header() {
                 className="group flex h-10 w-10 shrink-0 items-center justify-center gap-2 rounded-full bg-primary text-lg font-semibold text-primary-foreground md:text-base"
               >
                 <Briefcase className="h-5 w-5 transition-all group-hover:scale-110" />
-                <span className="sr-only">JobSync</span>
+                <span className="sr-only">Jobilea</span>
               </Link>
             </SheetClose>
             {SIDEBAR_LINKS.map((item) => {
@@ -58,14 +58,14 @@ async function Header() {
       </Sheet>
       <SidebarToggle />
       <h1 className="font-semibold">
-        JobSync<span className="hidden sm:inline"> - Job Search Assistant</span>
+        Jobilea<span className="hidden sm:inline"> - Job Search Assistant</span>
       </h1>
       <div className="relative ml-auto flex-1 md:grow-0">
         {/* <Search className="absolute left-2.5 top-2.5 h-4 w-4 text-muted-foreground" />
         <Input
           id="search"
           type="search"
-          placeholder="Search..."
+          placeholder="Buscar..."
           className="w-full rounded-lg bg-background pl-8 md:w-[200px] lg:w-[336px]"
         /> */}
       </div>

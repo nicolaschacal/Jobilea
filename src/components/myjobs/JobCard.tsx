@@ -133,8 +133,8 @@ export function JobCard({
           <Button
             variant="ghost"
             size="icon"
-            title="Edit Job"
-            aria-label="Edit Job"
+            title="Editar"
+            aria-label="Editar"
             onClick={() => editJob(job.id)}
           >
             <Pencil className="h-4 w-4" />
@@ -142,8 +142,8 @@ export function JobCard({
           <Button
             variant="ghost"
             size="icon"
-            title="Delete Job"
-            aria-label="Delete Job"
+            title="Eliminar"
+            aria-label="Eliminar"
             className="text-destructive hover:text-destructive"
             onClick={() => onDeleteJob(job.id)}
           >

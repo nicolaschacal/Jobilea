@@ -205,7 +205,7 @@ describe("JobsActivityCard", () => {
 
     expect(screen.getByText("0h")).toBeInTheDocument();
     expect(screen.getByText("3 jobs")).toBeInTheDocument();
-    expect(screen.getByText("No activities recorded")).toBeInTheDocument();
+    expect(screen.getByText("Todavía no hay actividad")).toBeInTheDocument();
     expect(screen.queryByTestId("donut")).not.toBeInTheDocument();
   });
 });

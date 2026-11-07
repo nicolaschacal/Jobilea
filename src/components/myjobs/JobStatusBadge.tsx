@@ -1,4 +1,5 @@
 "use client";
+import { statusLabel } from "@/lib/i18n";
 import type { ReactNode } from "react";
 import { Badge } from "../ui/badge";
 import { StatusBadge } from "../StatusBadge";
@@ -37,7 +38,7 @@ export function JobStatusBadge({ job, className, children }: JobStatusBadgeProps
 
   return (
     <StatusBadge
-      label={job.Status?.label ?? ""}
+      label={statusLabel(job.Status)}
       color={getJobStatusBadgeColor(job.Status?.value ?? "")}
       className={className}
     >

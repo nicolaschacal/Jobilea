@@ -39,7 +39,7 @@ interface SetGoalsDialogProps {
 const FIELDS = [
   {
     name: "jobs",
-    label: "Jobs applied per day",
+    label: "Postulaciones por día",
     noun: "jobs",
     ring: "var(--gc-ring-1)",
     min: DAILY_GOALS.JOBS_MIN,
@@ -47,7 +47,7 @@ const FIELDS = [
   },
   {
     name: "hours",
-    label: "Activity hours per day",
+    label: "Horas de búsqueda por día",
     noun: "hours",
     ring: "var(--gc-ring-2)",
     min: DAILY_GOALS.HOURS_MIN,
@@ -80,7 +80,7 @@ export default function SetGoalsDialog({
     startTransition(async () => {
       const result = await updateGoalTargets({ month, ...values });
       toastActionResult(result, {
-        success: "Daily goals saved.",
+        success: "Metas diarias saved.",
         onSuccess: (data) => {
           if (!data) return;
           onSaved(data);
@@ -97,7 +97,7 @@ export default function SetGoalsDialog({
       <DialogContent className="daily-goals-calendar sm:max-w-[440px]">
         <DialogHeader>
           <div className="flex items-center gap-2.5">
-            <DialogTitle>Daily goals</DialogTitle>
+            <DialogTitle>Metas diarias</DialogTitle>
             <span className="rounded-full bg-primary/10 px-2.5 py-0.5 text-xs font-medium text-primary">
               {monthName}
             </span>
@@ -130,7 +130,7 @@ export default function SetGoalsDialog({
                 variant="outline"
                 onClick={() => onOpenChange(false)}
               >
-                Cancel
+                Cancelar
               </Button>
               <Button
                 type="submit"

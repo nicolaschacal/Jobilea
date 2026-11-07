@@ -26,37 +26,37 @@ describe("SignupForm Component", () => {
   });
 
   it("renders the SignupForm component correctly", () => {
-    expect(screen.getByLabelText("Full Name")).toBeInTheDocument();
+    expect(screen.getByLabelText("Nombre y apellido")).toBeInTheDocument();
     expect(screen.getByLabelText("Email")).toBeInTheDocument();
-    expect(screen.getByLabelText("Password")).toBeInTheDocument();
+    expect(screen.getByLabelText("Contraseña")).toBeInTheDocument();
     expect(
-      screen.getByRole("button", { name: /create an account/i }),
+      screen.getByRole("button", { name: /crear mi cuenta/i }),
     ).toBeInTheDocument();
   });
 
   it("should display invalid name error when name is too short", async () => {
-    fireEvent.change(screen.getByLabelText("Full Name"), {
+    fireEvent.change(screen.getByLabelText("Nombre y apellido"), {
       target: { value: "A" },
     });
 
-    fireEvent.click(screen.getByRole("button", { name: /create an account/i }));
+    fireEvent.click(screen.getByRole("button", { name: /crear mi cuenta/i }));
 
     await waitFor(() => {
       expect(
-        screen.getByText("Name must be at least 2 characters."),
+        screen.getByText("El nombre debe tener al menos 2 letras."),
       ).toBeInTheDocument();
     });
   });
 
   it("should display invalid email error when email format is incorrect", async () => {
-    fireEvent.change(screen.getByLabelText("Full Name"), {
+    fireEvent.change(screen.getByLabelText("Nombre y apellido"), {
       target: { value: "John Doe" },
     });
     fireEvent.change(screen.getByLabelText("Email"), {
       target: { value: "invalid-email" },
     });
 
-    fireEvent.click(screen.getByRole("button", { name: /create an account/i }));
+    fireEvent.click(screen.getByRole("button", { name: /crear mi cuenta/i }));
 
     await waitFor(() => {
       expect(
@@ -66,38 +66,38 @@ describe("SignupForm Component", () => {
   });
 
   it("should display email minimum length error", async () => {
-    fireEvent.change(screen.getByLabelText("Full Name"), {
+    fireEvent.change(screen.getByLabelText("Nombre y apellido"), {
       target: { value: "John Doe" },
     });
     fireEvent.change(screen.getByLabelText("Email"), {
       target: { value: "a@" },
     });
 
-    fireEvent.click(screen.getByRole("button", { name: /create an account/i }));
+    fireEvent.click(screen.getByRole("button", { name: /crear mi cuenta/i }));
 
     await waitFor(() => {
       expect(
-        screen.getByText("Email must be at least 3 characters."),
+        screen.getByText("Ingresá un email válido."),
       ).toBeInTheDocument();
     });
   });
 
   it("should display password minimum length error", async () => {
-    fireEvent.change(screen.getByLabelText("Full Name"), {
+    fireEvent.change(screen.getByLabelText("Nombre y apellido"), {
       target: { value: "John Doe" },
     });
     fireEvent.change(screen.getByLabelText("Email"), {
       target: { value: "john@example.com" },
     });
-    fireEvent.change(screen.getByLabelText("Password"), {
+    fireEvent.change(screen.getByLabelText("Contraseña"), {
       target: { value: "short" },
     });
 
-    fireEvent.click(screen.getByRole("button", { name: /create an account/i }));
+    fireEvent.click(screen.getByRole("button", { name: /crear mi cuenta/i }));
 
     await waitFor(() => {
       expect(
-        screen.getByText("Password must be at least 6 characters."),
+        screen.getByText("La contraseña debe tener al menos 6 caracteres."),
       ).toBeInTheDocument();
     });
   });
@@ -106,17 +106,17 @@ describe("SignupForm Component", () => {
     const errorMessage = "An account with this email already exists.";
     (signup as any).mockResolvedValueOnce({ error: errorMessage });
 
-    fireEvent.change(screen.getByLabelText("Full Name"), {
+    fireEvent.change(screen.getByLabelText("Nombre y apellido"), {
       target: { value: "John Doe" },
     });
     fireEvent.change(screen.getByLabelText("Email"), {
       target: { value: "john@example.com" },
     });
-    fireEvent.change(screen.getByLabelText("Password"), {
+    fireEvent.change(screen.getByLabelText("Contraseña"), {
       target: { value: "password123" },
     });
 
-    fireEvent.click(screen.getByRole("button", { name: /create an account/i }));
+    fireEvent.click(screen.getByRole("button", { name: /crear mi cuenta/i }));
 
     await waitFor(() => {
       expect(screen.getByText(errorMessage)).toBeInTheDocument();
@@ -134,17 +134,17 @@ describe("SignupForm Component", () => {
     (signup as any).mockResolvedValueOnce({ success: true });
     (authenticate as any).mockResolvedValueOnce(authError);
 
-    fireEvent.change(screen.getByLabelText("Full Name"), {
+    fireEvent.change(screen.getByLabelText("Nombre y apellido"), {
       target: { value: "John Doe" },
     });
     fireEvent.change(screen.getByLabelText("Email"), {
       target: { value: "john@example.com" },
     });
-    fireEvent.change(screen.getByLabelText("Password"), {
+    fireEvent.change(screen.getByLabelText("Contraseña"), {
       target: { value: "password123" },
     });
 
-    fireEvent.click(screen.getByRole("button", { name: /create an account/i }));
+    fireEvent.click(screen.getByRole("button", { name: /crear mi cuenta/i }));
 
     await waitFor(() => {
       expect(screen.getByText(authError)).toBeInTheDocument();
@@ -162,17 +162,17 @@ describe("SignupForm Component", () => {
     (signup as any).mockResolvedValueOnce({ success: true });
     (authenticate as any).mockResolvedValueOnce(null);
 
-    fireEvent.change(screen.getByLabelText("Full Name"), {
+    fireEvent.change(screen.getByLabelText("Nombre y apellido"), {
       target: { value: "John Doe" },
     });
     fireEvent.change(screen.getByLabelText("Email"), {
       target: { value: "john@example.com" },
     });
-    fireEvent.change(screen.getByLabelText("Password"), {
+    fireEvent.change(screen.getByLabelText("Contraseña"), {
       target: { value: "password123" },
     });
 
-    fireEvent.click(screen.getByRole("button", { name: /create an account/i }));
+    fireEvent.click(screen.getByRole("button", { name: /crear mi cuenta/i }));
 
     await waitFor(() => {
       expect(signup).toHaveBeenCalledWith({

@@ -146,16 +146,16 @@ function DocumentTable({
       <Table>
         <TableHeader>
           <TableRow>
-            <TableHead>Title</TableHead>
-            <TableHead className="whitespace-nowrap">Type</TableHead>
-            <TableHead className="whitespace-nowrap">Created</TableHead>
+            <TableHead>Nombre</TableHead>
+            <TableHead className="whitespace-nowrap">Tipo</TableHead>
+            <TableHead className="whitespace-nowrap">Creado</TableHead>
             <TableHead className="hidden md:table-cell whitespace-nowrap">
-              Updated
+              Actualizado
             </TableHead>
-            <TableHead>Jobs</TableHead>
-            <TableHead>Actions</TableHead>
+            <TableHead>Postulaciones</TableHead>
+            <TableHead>Acciones</TableHead>
             <TableHead>
-              <span className="sr-only">Actions</span>
+              <span className="sr-only">Acciones</span>
             </TableHead>
           </TableRow>
         </TableHeader>
@@ -179,7 +179,7 @@ function DocumentTable({
                       ) : null}
                       {doc.isDefault ? (
                         <Badge className="ml-2 border-transparent bg-green-600 text-white hover:bg-green-600/90">
-                          Default
+                          Principal
                         </Badge>
                       ) : null}
                     </Link>
@@ -215,11 +215,11 @@ function DocumentTable({
                         data-testid="document-actions-menu-btn"
                       >
                         <MoreVertical className="h-4 w-4" />
-                        <span className="sr-only">Toggle menu</span>
+                        <span className="sr-only">Abrir menú</span>
                       </Button>
                     </DropdownMenuTrigger>
                     <DropdownMenuContent align="end">
-                      <DropdownMenuLabel>Actions</DropdownMenuLabel>
+                      <DropdownMenuLabel>Acciones</DropdownMenuLabel>
                       {isResume ? (
                         <>
                           <DropdownMenuItem
@@ -227,12 +227,12 @@ function DocumentTable({
                             onClick={() => editResume(doc)}
                           >
                             <Pencil className="mr-2 h-4 w-4" />
-                            Edit Resume Title
+                            Cambiar nombre
                           </DropdownMenuItem>
                           <Link href={`/dashboard/profile/resume/${doc.id}`}>
                             <DropdownMenuItem className="cursor-pointer">
                               <FilePenLine className="mr-2 h-4 w-4" />
-                              View/Edit Resume
+                              Ver / editar CV
                             </DropdownMenuItem>
                           </Link>
                           <DropdownMenuItem
@@ -241,7 +241,7 @@ function DocumentTable({
                             data-testid="copy-resume-menu-item"
                           >
                             <Copy className="mr-2 h-4 w-4" />
-                            Create a copy
+                            Duplicar
                           </DropdownMenuItem>
                           {!doc.isDefault && (
                             <DropdownMenuItem
@@ -249,7 +249,7 @@ function DocumentTable({
                               onClick={() => onSetDefault(doc)}
                             >
                               <Star className="mr-2 h-4 w-4" />
-                              Set as default
+                              Usar como principal
                             </DropdownMenuItem>
                           )}
                         </>
@@ -260,7 +260,7 @@ function DocumentTable({
                             onClick={() => editCoverLetter(doc)}
                           >
                             <Pencil className="mr-2 h-4 w-4" />
-                            Edit Cover Letter
+                            Editar carta
                           </DropdownMenuItem>
                           <DropdownMenuItem
                             className="cursor-pointer"
@@ -268,7 +268,7 @@ function DocumentTable({
                             data-testid="export-cover-letter-menu-item"
                           >
                             <FileDown className="mr-2 h-4 w-4" />
-                            Export to PDF
+                            Descargar PDF
                           </DropdownMenuItem>
                         </>
                       )}
@@ -277,7 +277,7 @@ function DocumentTable({
                         onClick={() => onDeleteDocument(doc)}
                       >
                         <Trash className="mr-2 h-4 w-4" />
-                        Delete
+                        Eliminar
                       </DropdownMenuItem>
                     </DropdownMenuContent>
                   </DropdownMenu>
@@ -311,7 +311,7 @@ function DocumentTable({
             ? `This will make "${documentToSetDefault?.title}" your default resume, replacing "${currentDefault.title}".`
             : `This will make "${documentToSetDefault?.title}" your default resume, replacing your current default.`
         }
-        actionLabel="Set as default"
+        actionLabel="Usar como principal"
         actionVariant="default"
       />
     </>

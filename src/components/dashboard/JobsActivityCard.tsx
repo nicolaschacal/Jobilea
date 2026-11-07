@@ -110,7 +110,7 @@ export default function JobsActivityCard({ data }: JobsActivityCardProps) {
       <CardHeader className="pb-2">
         <div className="flex items-center justify-between gap-2">
           <CardTitle className="text-lg text-green-600 min-w-0 truncate">
-            Jobs &amp; Activity
+            Postulaciones y actividad
           </CardTitle>
           <div
             className="flex shrink-0 rounded-md border text-xs"
@@ -141,7 +141,7 @@ export default function JobsActivityCard({ data }: JobsActivityCardProps) {
             <div className="flex h-full w-full items-center justify-center">
               <div className="h-[132px] w-[132px] rounded-full border-[18px] border-muted" />
               <p className="absolute inset-x-0 bottom-0 text-center text-sm text-muted-foreground">
-                No activities recorded
+                Todavía no hay actividad
               </p>
             </div>
           ) : (

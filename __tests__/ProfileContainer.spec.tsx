@@ -48,7 +48,7 @@ describe("ProfileContainer Component", () => {
     vi.clearAllMocks();
   });
   it("should render the profile container component", () => {
-    expect(screen.getByText(/profile/i)).toBeInTheDocument();
+    expect(screen.getByText(/mi cv/i)).toBeInTheDocument();
   });
 
   it("should open the create resume dialog upon clicking create resume button", async () => {
@@ -59,7 +59,7 @@ describe("ProfileContainer Component", () => {
     });
     await user.click(newButton);
 
-    const addResumeItem = await screen.findByText(/add new resume/i);
+    const addResumeItem = await screen.findByText(/subir cv/i);
     await user.click(addResumeItem);
 
     expect(screen.getByRole("dialog")).toBeInTheDocument();

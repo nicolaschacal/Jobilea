@@ -92,7 +92,7 @@ describe("JobCard", () => {
     renderCard(makeJob({ discoveryStatus: "dismissed" }));
 
     expect(screen.getByText("Dismissed")).toBeInTheDocument();
-    expect(screen.queryByText("Applied")).not.toBeInTheDocument();
+    expect(screen.queryByText("Postulado")).not.toBeInTheDocument();
   });
 
   it("shows an Expired badge for past-due draft jobs", () => {

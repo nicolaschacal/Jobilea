@@ -219,7 +219,7 @@ describe("BreakModal", () => {
     await user.click(screen.getByRole("button", { name: "Stop Activity" }));
 
     const confirm = await screen.findByRole("alertdialog");
-    await user.click(within(confirm).getByRole("button", { name: "Cancel" }));
+    await user.click(within(confirm).getByRole("button", { name: "Cancelar" }));
 
     expect(value.stopActivity).not.toHaveBeenCalled();
     expect(onClose).not.toHaveBeenCalled();

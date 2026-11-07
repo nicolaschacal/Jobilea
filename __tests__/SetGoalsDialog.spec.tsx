@@ -32,8 +32,8 @@ describe("SetGoalsDialog", () => {
         onSaved={onSaved}
       />,
     );
-  const jobs = () => screen.getByLabelText("Jobs applied per day");
-  const hours = () => screen.getByLabelText("Activity hours per day");
+  const jobs = () => screen.getByLabelText("Postulaciones por día");
+  const hours = () => screen.getByLabelText("Horas de búsqueda por día");
   const save = () => screen.getByRole("button", { name: "Save goals" });
 
   it("pre-fills the current targets and names the month", () => {

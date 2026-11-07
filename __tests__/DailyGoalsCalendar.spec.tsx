@@ -62,15 +62,15 @@ describe("DailyGoalsCalendar", () => {
     renderCalendar();
     expect(calendar().getByText("Oct 2026")).toBeInTheDocument();
     expect(
-      calendar().getByText(/October 1: Jobs applied 3 of 5, Activity 2\.5 of 4 h/),
+      calendar().getByText(/October 1: Postulaciones 3 of 5, Actividad 2\.5 of 4 h/),
     ).toBeInTheDocument();
     expect(getDailyGoalValues).not.toHaveBeenCalled();
   });
 
   it("shows a legend naming both rings and their targets", () => {
     renderCalendar();
-    expect(calendar().getByText("Jobs applied")).toBeInTheDocument();
-    expect(calendar().getByText("Activity")).toBeInTheDocument();
+    expect(calendar().getByText("Postulaciones")).toBeInTheDocument();
+    expect(calendar().getByText("Actividad")).toBeInTheDocument();
     expect(calendar().getByText("4 h")).toBeInTheDocument();
   });
 
@@ -91,7 +91,7 @@ describe("DailyGoalsCalendar", () => {
     await user.click(previous());
     expect(getDailyGoalValues).toHaveBeenCalledWith("2026-09");
     expect(
-      await calendar().findByText(/September 10: Jobs applied 5 of 5, Activity 4 of 4 h\. All goals met\./),
+      await calendar().findByText(/September 10: Postulaciones 5 of 5, Actividad 4 of 4 h\. All goals met\./),
     ).toBeInTheDocument();
     expect(cards().at(-1)).not.toHaveAttribute("aria-busy");
 
@@ -140,7 +140,7 @@ describe("DailyGoalsCalendar", () => {
     expect(cards()).toHaveLength(2);
     // Oct 1 had 3 jobs, 2.5h: neither met; Oct 2–4 empty; today not met
     expect(
-      summary().getByText("October 2026. Goal hit: Jobs applied 0%, Activity 0%"),
+      summary().getByText("October 2026. Goal hit: Postulaciones 0%, Actividad 0%"),
     ).toBeInTheDocument();
     // Stat rows are <dt>/<dd>: roles "term" / "definition"
     const text = (role: string) =>
@@ -199,7 +199,7 @@ describe("DailyGoalsCalendar", () => {
       sep.resolve(ok({ "2026-09-01": { jobs: 5, hours: 4 } })),
     );
     expect(
-      summary().getByText("September 2026. Goal hit: Jobs applied 3%, Activity 3%"),
+      summary().getByText("September 2026. Goal hit: Postulaciones 3%, Actividad 3%"),
     ).toBeInTheDocument();
     expect(cards()[0]).not.toHaveAttribute("aria-busy");
     expect(cards()[1]).not.toHaveAttribute("aria-busy");
@@ -239,7 +239,7 @@ describe("DailyGoalsCalendar", () => {
   it("judges the current month against its stored target", () => {
     renderCalendar({ "2026-10": { jobs: 3, hours: 2 } });
     expect(
-      calendar().getByText(/October 1: Jobs applied 3 of 3, Activity 2\.5 of 2 h\. All goals met\./),
+      calendar().getByText(/October 1: Postulaciones 3 of 3, Actividad 2\.5 of 2 h\. All goals met\./),
     ).toBeInTheDocument();
     expect(calendar().getByText("2 h")).toBeInTheDocument();
   });
@@ -252,7 +252,7 @@ describe("DailyGoalsCalendar", () => {
 
     await user.click(previous());
     expect(
-      await calendar().findByText(/September 10: Jobs applied 4 of 5, Activity 4 of 4 h$/),
+      await calendar().findByText(/September 10: Postulaciones 4 of 5, Actividad 4 of 4 h$/),
     ).toBeInTheDocument();
   });
 
@@ -266,7 +266,7 @@ describe("DailyGoalsCalendar", () => {
     expect(calendar().getByText("7 h")).toBeInTheDocument();
   });
 
-  const setGoals = () => calendar().getByRole("button", { name: "Set goals" });
+  const setGoals = () => calendar().getByRole("button", { name: "Definir metas" });
 
   it("places Set goals inside the calendar", () => {
     renderCalendar();
@@ -287,16 +287,16 @@ describe("DailyGoalsCalendar", () => {
     renderCalendar();
 
     await user.click(setGoals());
-    const jobs = await screen.findByLabelText("Jobs applied per day");
+    const jobs = await screen.findByLabelText("Postulaciones por día");
     await user.clear(jobs);
     await user.type(jobs, "3");
-    const hours = screen.getByLabelText("Activity hours per day");
+    const hours = screen.getByLabelText("Horas de búsqueda por día");
     await user.clear(hours);
     await user.type(hours, "2");
     await user.click(screen.getByRole("button", { name: "Save goals" }));
 
     expect(
-      await calendar().findByText(/October 1: Jobs applied 3 of 3, Activity 2\.5 of 2 h\. All goals met\./),
+      await calendar().findByText(/October 1: Postulaciones 3 of 3, Actividad 2\.5 of 2 h\. All goals met\./),
     ).toBeInTheDocument();
     // "Both goals met" is now 1 day; "6 days" is the new current streak
     expect(summary().getByText("6 days")).toBeInTheDocument();
@@ -308,7 +308,7 @@ describe("DailyGoalsCalendar", () => {
       <DailyGoalsCalendar today={today} initialData={null} initialStreaks={null} />,
     );
     expect(
-      calendar().queryByRole("button", { name: "Set goals" }),
+      calendar().queryByRole("button", { name: "Definir metas" }),
     ).not.toBeInTheDocument();
   });
 
@@ -326,10 +326,10 @@ describe("DailyGoalsCalendar", () => {
 
     await user.click(previous());
     await user.click(setGoals());
-    const jobs = await screen.findByLabelText("Jobs applied per day");
+    const jobs = await screen.findByLabelText("Postulaciones por día");
     await user.clear(jobs);
     await user.type(jobs, "3");
-    const hours = screen.getByLabelText("Activity hours per day");
+    const hours = screen.getByLabelText("Horas de búsqueda por día");
     await user.clear(hours);
     await user.type(hours, "2");
     await user.click(screen.getByRole("button", { name: "Save goals" }));
@@ -338,7 +338,7 @@ describe("DailyGoalsCalendar", () => {
 
     await user.click(next());
     expect(
-      calendar().getByText(/October 1: Jobs applied 3 of 3, Activity 2\.5 of 2 h\. All goals met\./),
+      calendar().getByText(/October 1: Postulaciones 3 of 3, Actividad 2\.5 of 2 h\. All goals met\./),
     ).toBeInTheDocument();
   });
 });

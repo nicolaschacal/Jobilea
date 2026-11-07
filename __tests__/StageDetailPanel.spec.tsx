@@ -204,7 +204,7 @@ describe("StageDetailPanel", () => {
     await userEvent.click(
       screen.getByRole("button", { name: "Delete Final / Onsite Interview" }),
     );
-    await userEvent.click(screen.getByRole("button", { name: "Delete" }));
+    await userEvent.click(screen.getByRole("button", { name: "Eliminar" }));
 
     expect(deleteJobStage).toHaveBeenCalledWith("st1");
   });
@@ -217,7 +217,7 @@ describe("StageDetailPanel", () => {
     await userEvent.click(
       screen.getByRole("button", { name: "Delete Final / Onsite Interview" }),
     );
-    await userEvent.click(screen.getByRole("button", { name: "Cancel" }));
+    await userEvent.click(screen.getByRole("button", { name: "Cancelar" }));
 
     expect(deleteJobStage).not.toHaveBeenCalled();
   });
@@ -243,7 +243,7 @@ describe("StageDetailPanel", () => {
 
     await userEvent.click(screen.getByRole("button", { name: "Delete Applied" }));
 
-    expect(screen.getByText(/This action cannot be undone/)).toBeInTheDocument();
+    expect(screen.getByText(/No se puede deshacer/)).toBeInTheDocument();
   });
 
   it("reverts the draft on Cancel without calling the action", async () => {

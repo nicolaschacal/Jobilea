@@ -241,7 +241,7 @@ export function AddJob({
     });
   }
 
-  const pageTitle = editJob ? "Edit Job" : "Add Job";
+  const pageTitle = editJob ? "Editar postulación" : "Add Job";
   const pageDescription = editJob ? (
     "Update the details of this job application."
   ) : (
@@ -347,7 +347,7 @@ export function AddJob({
         >
           <PlusCircle className="h-3.5 w-3.5" />
           <span className="sr-only sm:not-sr-only sm:whitespace-nowrap">
-            New Job
+            Nueva postulación
           </span>
         </Button>
       )}
@@ -367,7 +367,7 @@ export function AddJob({
                 className="flex min-h-0 flex-1 flex-col"
               >
                 <div className="flex-1 space-y-7 overflow-y-auto px-8 py-6">
-                  <FormSection id="add-job-role" title="Role details">
+                  <FormSection id="add-job-role" title="Datos del puesto">
                     {/* Job URL */}
                     <FormField
                       control={form.control}
@@ -375,7 +375,7 @@ export function AddJob({
                       render={({ field }) => (
                         <FormItem className="flex flex-col">
                           <div className="flex items-baseline gap-1">
-                            <FormLabel>Job URL</FormLabel>
+                            <FormLabel>Link del aviso</FormLabel>
                             <span className="text-xs leading-none text-muted-foreground">
                               · optional, keeps the posting one click away
                             </span>
@@ -386,7 +386,7 @@ export function AddJob({
                             </InputGroupAddon>
                             <FormControl>
                               <InputGroupInput
-                                placeholder="Copy and paste job link here"
+                                placeholder="Pegá acá el link del aviso"
                                 {...field}
                               />
                             </FormControl>
@@ -404,7 +404,7 @@ export function AddJob({
                           render={({ field }) => (
                             <FormItem className="flex flex-col">
                               <div className="flex items-baseline gap-1">
-                                <FormLabel>Job Title</FormLabel>
+                                <FormLabel>Puesto</FormLabel>
                                 {requiredMark}
                               </div>
                               <FormControl>
@@ -428,7 +428,7 @@ export function AddJob({
                           render={({ field }) => (
                             <FormItem className="flex flex-col">
                               <div className="flex items-baseline gap-1">
-                                <FormLabel>Company</FormLabel>
+                                <FormLabel>Empresa</FormLabel>
                                 {requiredMark}
                               </div>
                               <FormControl>
@@ -452,7 +452,7 @@ export function AddJob({
                           render={({ field }) => (
                             <FormItem className="flex flex-col">
                               <div className="flex items-baseline gap-1">
-                                <FormLabel>Job Location</FormLabel>
+                                <FormLabel>Lugar de trabajo</FormLabel>
                                 {requiredMark}
                                 {!editJob &&
                                   location &&
@@ -478,7 +478,7 @@ export function AddJob({
                         name="salaryRange"
                         render={({ field }) => (
                           <FormItem className="flex flex-col">
-                            <FormLabel>Salary Range</FormLabel>
+                            <FormLabel>Sueldo</FormLabel>
                             <Combobox
                               options={SALARY_RANGES}
                               field={field}
@@ -497,7 +497,7 @@ export function AddJob({
                         name="workplaceType"
                         render={({ field }) => (
                           <FormItem className="flex flex-col">
-                            <FormLabel>Workplace Type</FormLabel>
+                            <FormLabel>Modalidad</FormLabel>
                             <SegmentedRadio
                               aria-label="Workplace Type"
                               options={Object.entries(WORKPLACE_TYPES).map(
@@ -517,7 +517,7 @@ export function AddJob({
                         render={({ field }) => (
                           <FormItem className="flex flex-col">
                             <div className="flex items-baseline gap-1">
-                              <FormLabel>Job Type</FormLabel>
+                              <FormLabel>Tipo de trabajo</FormLabel>
                               {requiredMark}
                             </div>
                             <SegmentedRadio
@@ -535,7 +535,7 @@ export function AddJob({
                     </div>
                   </FormSection>
 
-                  <FormSection id="add-job-tracking" title="Tracking" muted>
+                  <FormSection id="add-job-tracking" title="Seguimiento" muted>
                     {/* Status */}
                     <FormField
                       control={form.control}
@@ -543,7 +543,7 @@ export function AddJob({
                       render={({ field }) => (
                         <FormItem className="flex flex-col">
                           <div className="flex items-baseline gap-1">
-                            <FormLabel>Status</FormLabel>
+                            <FormLabel>Estado</FormLabel>
                             {requiredMark}
                           </div>
                           <StatusSegment
@@ -565,7 +565,7 @@ export function AddJob({
                         name="dateApplied"
                         render={({ field }) => (
                           <FormItem className="flex flex-col">
-                            <FormLabel>Date Applied</FormLabel>
+                            <FormLabel>Fecha en que te postulaste</FormLabel>
                             <DatePicker
                               field={{
                                 ...field,
@@ -580,7 +580,7 @@ export function AddJob({
                             />
                             {isAutoFilledDate && (
                               <p className="text-xs text-primary">
-                                Set to today when you marked it Applied
+                                Se completa sola cuando la pasás a Postulado
                               </p>
                             )}
                             <FormMessage />
@@ -594,7 +594,7 @@ export function AddJob({
                         render={({ field }) => (
                           <FormItem className="flex flex-col">
                             <div className="flex items-baseline gap-1">
-                              <FormLabel>Due Date</FormLabel>
+                              <FormLabel>Fecha límite</FormLabel>
                               {requiredMark}
                             </div>
                             <DatePicker
@@ -620,7 +620,7 @@ export function AddJob({
                           render={({ field }) => (
                             <FormItem className="flex flex-col">
                               <div className="flex items-baseline gap-1">
-                                <FormLabel>Job Source</FormLabel>
+                                <FormLabel>Dónde lo viste</FormLabel>
                                 {requiredMark}
                                 {!editJob &&
                                   source &&
@@ -641,14 +641,14 @@ export function AddJob({
                     </div>
                   </FormSection>
 
-                  <FormSection id="add-job-docs" title="Skills & documents">
+                  <FormSection id="add-job-docs" title="Habilidades y documentos">
                     {/* Add Skill Tags */}
                     <FormField
                       control={form.control}
                       name="tags"
                       render={({ field }) => (
                         <FormItem className="flex flex-col">
-                          <FormLabel>Add Skill</FormLabel>
+                          <FormLabel>Agregar habilidad</FormLabel>
                           <FormControl>
                             <TagInput
                               availableTags={availableTags}
@@ -668,7 +668,7 @@ export function AddJob({
                         render={({ field }) => (
                           <FormItem className="flex flex-col">
                             <div className="flex items-baseline gap-1">
-                              <FormLabel>Resume</FormLabel>
+                              <FormLabel>CV</FormLabel>
                               <span className="text-xs leading-none text-muted-foreground">
                                 · Resumes are built on your Profile
                               </span>
@@ -697,7 +697,7 @@ export function AddJob({
                         name="coverLetter"
                         render={({ field }) => (
                           <FormItem className="flex flex-col">
-                            <FormLabel>Cover Letter</FormLabel>
+                            <FormLabel>Carta de presentación</FormLabel>
                             <SelectFormCtrl
                               label="Cover Letter"
                               fullWidth
@@ -719,10 +719,10 @@ export function AddJob({
                       <FormItem className="flex flex-col">
                         <div className="flex items-baseline justify-between gap-2">
                           <FormLabel id="job-description-label">
-                            Job Description
+                            Descripción del aviso
                           </FormLabel>
                           <span className="text-xs leading-none text-muted-foreground">
-                            Paste the full posting · powers Job Match
+                            Pegá el aviso completo · así la IA puede decirte qué tan bien encajás
                           </span>
                         </div>
                         <FormControl>

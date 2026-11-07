@@ -1,4 +1,5 @@
 "use client";
+import { statusLabel } from "@/lib/i18n";
 import { Check } from "lucide-react";
 import { DropdownMenuItem } from "../ui/dropdown-menu";
 import { JobStatus } from "@/models/job.model";
@@ -30,7 +31,7 @@ export function JobStatusMenuItems({
               <Check className="h-4 w-4" />
             </span>
           )}
-          <span>{status.label}</span>
+          <span>{statusLabel(status)}</span>
         </DropdownMenuItem>
       ))}
     </>

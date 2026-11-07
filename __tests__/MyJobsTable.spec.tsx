@@ -71,16 +71,16 @@ describe("MyJobsTable", () => {
     expect(screen.getByText("Software Engineer")).toBeInTheDocument();
     expect(screen.getByText("Acme Corp")).toBeInTheDocument();
     expect(screen.getByText("Remote")).toBeInTheDocument();
-    const statusButton = screen.getByRole("button", { name: /Change status/ });
-    expect(within(statusButton).getByText("Applied")).toBeInTheDocument();
+    const statusButton = screen.getByRole("button", { name: /Cambiar estado/ });
+    expect(within(statusButton).getByText("Postulado")).toBeInTheDocument();
   });
 
   it("shows a Dismissed badge for discovered jobs regardless of status", () => {
     renderTable([makeJob({ discoveryStatus: "dismissed", Status: { id: "1", label: "Applied", value: "applied" } })]);
 
     expect(screen.getByText("Dismissed")).toBeInTheDocument();
-    const statusButton = screen.getByRole("button", { name: /Change status/ });
-    expect(within(statusButton).queryByText("Applied")).not.toBeInTheDocument();
+    const statusButton = screen.getByRole("button", { name: /Cambiar estado/ });
+    expect(within(statusButton).queryByText("Postulado")).not.toBeInTheDocument();
   });
 
   it("shows an Expired badge for past-due draft jobs", () => {
@@ -103,8 +103,8 @@ describe("MyJobsTable", () => {
     ]);
 
     expect(screen.queryByText("Expired")).not.toBeInTheDocument();
-    const statusButton = screen.getByRole("button", { name: /Change status/ });
-    expect(within(statusButton).getByText("Applied")).toBeInTheDocument();
+    const statusButton = screen.getByRole("button", { name: /Cambiar estado/ });
+    expect(within(statusButton).getByText("Postulado")).toBeInTheDocument();
   });
 
   it("renders a match score when present, and a Match button otherwise", () => {
@@ -168,11 +168,11 @@ describe("MyJobsTable", () => {
   describe("row actions menu", () => {
     const user = userEvent.setup();
 
-    it("navigates to job details when View Details is clicked", async () => {
+    it("navigates to job details when Ver detalle is clicked", async () => {
       renderTable([makeJob()]);
 
       await user.click(screen.getByTestId("job-actions-menu-btn"));
-      await user.click(screen.getByText("View Details"));
+      await user.click(screen.getByText("Ver detalle"));
 
       expect(mockPush).toHaveBeenCalledWith("/dashboard/myjobs/job-1");
     });
@@ -180,16 +180,16 @@ describe("MyJobsTable", () => {
     it("calls editJob with the job id when Edit Job is clicked", async () => {
       const { editJob } = renderTable([makeJob()]);
 
-      await user.click(screen.getByRole("button", { name: "Edit Job" }));
+      await user.click(screen.getByRole("button", { name: "Editar" }));
 
       expect(editJob).toHaveBeenCalledWith("job-1");
     });
 
-    it("calls onAddNote with the job id when Add a Note is clicked", async () => {
+    it("calls onAddNote with the job id when Agregar nota is clicked", async () => {
       const { onAddNote } = renderTable([makeJob()]);
 
       await user.click(screen.getByTestId("job-actions-menu-btn"));
-      await user.click(screen.getByText("Add a Note"));
+      await user.click(screen.getByText("Agregar nota"));
 
       expect(onAddNote).toHaveBeenCalledWith("job-1");
     });
@@ -197,33 +197,33 @@ describe("MyJobsTable", () => {
     it("opens the delete confirmation dialog and calls deleteJob on confirm", async () => {
       const { deleteJob } = renderTable([makeJob()]);
 
-      await user.click(screen.getByRole("button", { name: "Delete Job" }));
+      await user.click(screen.getByRole("button", { name: "Eliminar" }));
 
       expect(
-        screen.getByText("Are you sure you want to delete this job?"),
+        screen.getByText("¿Seguro que querés eliminarlo?"),
       ).toBeInTheDocument();
 
-      await user.click(screen.getByRole("button", { name: "Delete" }));
+      await user.click(screen.getByRole("button", { name: "Eliminar" }));
 
       expect(deleteJob).toHaveBeenCalledWith("job-1");
     });
 
-    // The "Change status" item is a Radix submenu trigger; opening/selecting
+    // The "Cambiar estado" item is a Radix submenu trigger; opening/selecting
     // via pointer clicks is flaky in jsdom, so drive it with the keyboard,
     // which is how Radix menus are designed to be operated.
     const openChangeStatusSubmenu = async () => {
       await user.click(screen.getByTestId("job-actions-menu-btn"));
       await user.keyboard("{ArrowDown}{ArrowDown}{ArrowDown}{ArrowDown}");
       await user.keyboard("{ArrowRight}");
-      await screen.findByText("Interview");
+      await screen.findByText("Entrevista");
     };
 
-    it("disables the current status option in the Change status submenu", async () => {
+    it("disables the current status option in the Cambiar estado submenu", async () => {
       renderTable([makeJob({ Status: { id: "1", label: "Applied", value: "applied" } })]);
 
       await openChangeStatusSubmenu();
 
-      const appliedOption = screen.getAllByText("Applied").find(
+      const appliedOption = screen.getAllByText("Postulado").find(
         (el) => el.closest('[role="menuitem"]'),
       );
       expect(appliedOption?.closest('[role="menuitem"]')).toHaveAttribute(
@@ -254,19 +254,19 @@ describe("MyJobsTable", () => {
       renderTable([makeJob()]);
 
       await user.click(
-        screen.getByRole("button", { name: "Change status, currently Applied" }),
+        screen.getByRole("button", { name: "Cambiar estado (ahora: Postulado)" }),
       );
 
-      expect(await screen.findByText("Interview")).toBeInTheDocument();
+      expect(await screen.findByText("Entrevista")).toBeInTheDocument();
     });
 
     it("calls onChangeJobStatus with the job id and selected status", async () => {
       const { onChangeJobStatus } = renderTable([makeJob()]);
 
       await user.click(
-        screen.getByRole("button", { name: "Change status, currently Applied" }),
+        screen.getByRole("button", { name: "Cambiar estado (ahora: Postulado)" }),
       );
-      await user.click(await screen.findByText("Interview"));
+      await user.click(await screen.findByText("Entrevista"));
 
       expect(onChangeJobStatus).toHaveBeenCalledWith("job-1", {
         id: "2",
@@ -279,10 +279,10 @@ describe("MyJobsTable", () => {
       renderTable([makeJob()]);
 
       await user.click(
-        screen.getByRole("button", { name: "Change status, currently Applied" }),
+        screen.getByRole("button", { name: "Cambiar estado (ahora: Postulado)" }),
       );
 
-      const appliedOption = (await screen.findAllByText("Applied")).find((el) =>
+      const appliedOption = (await screen.findAllByText("Postulado")).find((el) =>
         el.closest('[role="menuitem"]'),
       );
       expect(appliedOption?.closest('[role="menuitem"]')).toHaveAttribute(

@@ -41,7 +41,7 @@ describe("NavLink - active state", () => {
     render(
       <TooltipProvider>
         <NavLink
-          label="Jobs"
+          label="Mis postulaciones"
           Icon={Briefcase}
           route={route}
           pathname={pathname}
@@ -81,7 +81,7 @@ describe("NavLink - label rendering", () => {
     render(
       <TooltipProvider>
         <NavLink
-          label="Jobs"
+          label="Mis postulaciones"
           Icon={Briefcase}
           route="/dashboard/myjobs"
           pathname="/dashboard"
@@ -93,7 +93,7 @@ describe("NavLink - label rendering", () => {
   it("shows a visible label when expanded", () => {
     renderNavLink(true);
 
-    expect(screen.getByText("Jobs")).not.toHaveClass("sr-only");
+    expect(screen.getByText("Mis postulaciones")).not.toHaveClass("sr-only");
   });
 
   // The icon sits in a fixed-width lead box, so the label can stay in
@@ -101,16 +101,16 @@ describe("NavLink - label rendering", () => {
   it("fades the label out visually when collapsed", () => {
     renderNavLink(false);
 
-    expect(screen.getByText("Jobs")).toHaveClass("opacity-0");
+    expect(screen.getByText("Mis postulaciones")).toHaveClass("opacity-0");
   });
 
   it("keeps an accessible name in both states", () => {
     const { unmount } = renderNavLink(false);
-    expect(screen.getByRole("link", { name: "Jobs" })).toBeInTheDocument();
+    expect(screen.getByRole("link", { name: "Mis postulaciones" })).toBeInTheDocument();
     unmount();
 
     renderNavLink(true);
-    expect(screen.getByRole("link", { name: "Jobs" })).toBeInTheDocument();
+    expect(screen.getByRole("link", { name: "Mis postulaciones" })).toBeInTheDocument();
   });
 });
 
@@ -123,11 +123,11 @@ describe("Sidebar", () => {
   it("renders a link for each nav item", () => {
     renderSidebar();
 
-    expect(screen.getByRole("link", { name: "Dashboard" })).toHaveAttribute(
+    expect(screen.getByRole("link", { name: "Inicio" })).toHaveAttribute(
       "href",
       "/dashboard"
     );
-    expect(screen.getByRole("link", { name: "Jobs" })).toHaveAttribute(
+    expect(screen.getByRole("link", { name: "Mis postulaciones" })).toHaveAttribute(
       "href",
       "/dashboard/myjobs"
     );
@@ -139,11 +139,11 @@ describe("Sidebar", () => {
 
     expect(screen.getByText(testUser.email)).toBeInTheDocument();
 
-    await user.click(screen.getByRole("button", { name: "User menu" }));
+    await user.click(screen.getByRole("button", { name: "Menú de usuario" }));
 
     // Radix gives the menu item role="menuitem" rather than "link".
     expect(
-      await screen.findByRole("menuitem", { name: "Settings" })
+      await screen.findByRole("menuitem", { name: "Configuración" })
     ).toHaveAttribute("href", "/dashboard/settings");
   });
 
@@ -152,12 +152,12 @@ describe("Sidebar", () => {
 
     renderSidebar();
 
-    expect(screen.getByRole("link", { name: "Tasks" })).toHaveAttribute(
+    expect(screen.getByRole("link", { name: "Tareas" })).toHaveAttribute(
       "aria-current",
       "page"
     );
     expect(
-      screen.getByRole("link", { name: "Dashboard" })
+      screen.getByRole("link", { name: "Inicio" })
     ).not.toHaveAttribute("aria-current");
   });
 
@@ -170,7 +170,7 @@ describe("Sidebar", () => {
     expect(
       sidebar.queryByRole("button", { name: "Collapse sidebar" })
     ).toBeNull();
-    expect(sidebar.getByRole("button", { name: "User menu" })).toBeInTheDocument();
+    expect(sidebar.getByRole("button", { name: "Menú de usuario" })).toBeInTheDocument();
   });
 });
 
@@ -205,11 +205,11 @@ describe("SidebarToggle", () => {
     const user = userEvent.setup();
     renderSidebar();
 
-    expect(screen.getByText("Jobs")).not.toHaveClass("opacity-0");
+    expect(screen.getByText("Mis postulaciones")).not.toHaveClass("opacity-0");
 
     await user.click(screen.getByRole("button", { name: "Collapse sidebar" }));
 
-    expect(screen.getByText("Jobs")).toHaveClass("opacity-0");
+    expect(screen.getByText("Mis postulaciones")).toHaveClass("opacity-0");
   });
 
   it("persists the collapsed state as a cookie", async () => {
@@ -245,7 +245,7 @@ describe("ProfileDropdown notifications", () => {
     (useNotifications as any).mockReturnValue({ summary: { unread: 3, unreadErrors: 1 }, refresh: vi.fn() });
     renderIt();
     expect(screen.getByText("Unread notifications")).toBeInTheDocument();
-    expect(screen.queryByText("Update available")).toBeNull();
+    expect(screen.queryByText("Hay una actualización")).toBeNull();
     expect(screen.getByTestId("avatar-dot").className).toMatch(/destructive/);
   });
 
@@ -258,14 +258,14 @@ describe("ProfileDropdown notifications", () => {
   it("falls back to the update dot when nothing is unread", () => {
     (useNotifications as any).mockReturnValue({ summary: { unread: 0, unreadErrors: 0 }, refresh: vi.fn() });
     renderIt();
-    expect(screen.getByText("Update available")).toBeInTheDocument();
+    expect(screen.getByText("Hay una actualización")).toBeInTheDocument();
   });
 
   it("menu has a Notifications entry with the count", async () => {
     (useNotifications as any).mockReturnValue({ summary: { unread: 3, unreadErrors: 1 }, refresh: vi.fn() });
     renderIt();
-    await userEvent.click(screen.getByRole("button", { name: /user menu/i }));
-    const item = await screen.findByRole("menuitem", { name: /notifications/i });
+    await userEvent.click(screen.getByRole("button", { name: /menú de usuario/i }));
+    const item = await screen.findByRole("menuitem", { name: /notificaciones/i });
     expect(item).toHaveAttribute("href", "/dashboard/notifications");
     expect(item).toHaveTextContent("3");
   });

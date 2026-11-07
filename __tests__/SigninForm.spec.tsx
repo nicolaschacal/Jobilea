@@ -26,8 +26,8 @@ describe("SigninForm Component", () => {
 
   it("renders the SigninForm component correctly", () => {
     expect(screen.getByLabelText("Email")).toBeInTheDocument();
-    expect(screen.getByLabelText("Password")).toBeInTheDocument();
-    expect(screen.getByRole("button", { name: /login/i })).toBeInTheDocument();
+    expect(screen.getByLabelText("Contraseña")).toBeInTheDocument();
+    expect(screen.getByRole("button", { name: /ingresar/i })).toBeInTheDocument();
   });
 
   it("should display invalid email error", async () => {
@@ -35,7 +35,7 @@ describe("SigninForm Component", () => {
       target: { value: "admin" },
     });
 
-    fireEvent.click(screen.getByRole("button", { name: /login/i }));
+    fireEvent.click(screen.getByRole("button", { name: /ingresar/i }));
 
     await waitFor(() => {
       expect(
@@ -49,7 +49,7 @@ describe("SigninForm Component", () => {
       target: { value: "ad" },
     });
 
-    fireEvent.click(screen.getByRole("button", { name: /login/i }));
+    fireEvent.click(screen.getByRole("button", { name: /ingresar/i }));
 
     await waitFor(() => {
       expect(
@@ -65,11 +65,11 @@ describe("SigninForm Component", () => {
     fireEvent.change(screen.getByLabelText("Email"), {
       target: { value: "admin@example.com" },
     });
-    fireEvent.change(screen.getByLabelText("Password"), {
+    fireEvent.change(screen.getByLabelText("Contraseña"), {
       target: { value: "password" },
     });
 
-    fireEvent.click(screen.getByRole("button", { name: /login/i }));
+    fireEvent.click(screen.getByRole("button", { name: /ingresar/i }));
 
     await waitFor(() => {
       expect(authenticate).toHaveBeenCalledWith("", expect.any(FormData));
@@ -84,11 +84,11 @@ describe("SigninForm Component", () => {
     fireEvent.change(screen.getByLabelText("Email"), {
       target: { value: "admin@example.com" },
     });
-    fireEvent.change(screen.getByLabelText("Password"), {
+    fireEvent.change(screen.getByLabelText("Contraseña"), {
       target: { value: "wrongpassword" },
     });
 
-    fireEvent.click(screen.getByRole("button", { name: /login/i }));
+    fireEvent.click(screen.getByRole("button", { name: /ingresar/i }));
 
     await waitFor(() => {
       expect(authenticate).toHaveBeenCalledWith("", expect.any(FormData));

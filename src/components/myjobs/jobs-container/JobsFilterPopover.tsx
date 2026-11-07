@@ -1,4 +1,5 @@
 "use client";
+import { statusLabel } from "@/lib/i18n";
 import { useState } from "react";
 import { SlidersHorizontal } from "lucide-react";
 import { Popover, PopoverContent, PopoverTrigger } from "../../ui/popover";
@@ -138,7 +139,7 @@ export function JobsFilterPopover({
           size="sm"
           variant="outline"
           data-testid="job-filter-button"
-          aria-label={active ? `Filter jobs, ${active} active` : "Filter jobs"}
+          aria-label={active ? `Filtrar, ${active} active` : "Filtrar"}
           className={cn(
             "relative h-8 w-8 p-0",
             active > 0 && "border-foreground ring-2 ring-foreground/10",
@@ -155,26 +156,26 @@ export function JobsFilterPopover({
       <PopoverContent
         align="end"
         collisionPadding={16}
-        aria-label="Filter jobs"
+        aria-label="Filtrar"
         className="flex w-[min(380px,calc(100vw-32px))] flex-col p-0"
       >
         <div className="max-h-[min(70vh,560px)] overflow-y-auto">
           <div className="flex flex-col gap-2.5 border-b p-4 pb-3">
             <div className="flex items-center justify-between">
-              <span className={SECTION_LABEL}>Status</span>
+              <span className={SECTION_LABEL}>Estado</span>
               <button
                 type="button"
                 className="text-xs text-muted-foreground hover:text-foreground"
                 onClick={toggleAllStatuses}
               >
-                {allStatusesPicked ? "Clear" : "Select all"}
+                {allStatusesPicked ? "Ninguno" : "Todos"}
               </button>
             </div>
             <div className="grid grid-cols-2 gap-x-4 gap-y-2 text-[13px]">
               {orderedStatuses.map((s) =>
                 statusRow(
                   s.id,
-                  s.label,
+                  statusLabel(s),
                   draft.statuses.includes(s.value),
                   counts?.statusCounts[s.id],
                   () =>
@@ -198,13 +199,13 @@ export function JobsFilterPopover({
             </div>
           </div>
           <div className="flex flex-col gap-2.5 border-b px-4 py-3">
-            <span className={SECTION_LABEL}>Job type</span>
+            <span className={SECTION_LABEL}>Tipo de trabajo</span>
             {segmented(JOB_TYPES, draft.jobTypes, (code) =>
               setDraft((d) => ({ ...d, jobTypes: toggleIn(d.jobTypes, code) })),
             )}
           </div>
           <div className="flex flex-col gap-2.5 border-b px-4 py-3">
-            <span className={SECTION_LABEL}>Workplace</span>
+            <span className={SECTION_LABEL}>Modalidad</span>
             {segmented(WORKPLACE_TYPES, draft.workplaces, (code) =>
               setDraft((d) => ({
                 ...d,
@@ -216,13 +217,13 @@ export function JobsFilterPopover({
             <input
               type="checkbox"
               className="h-4 w-4 shrink-0"
-              aria-label="Include dismissed discovered jobs"
+              aria-label="Incluir sugerencias descartadas"
               checked={draft.includeDismissed}
               onChange={() =>
                 setDraft((d) => ({ ...d, includeDismissed: !d.includeDismissed }))
               }
             />
-            <span>Include dismissed discovered jobs</span>
+            <span>Incluir sugerencias descartadas</span>
           </label>
         </div>
         <div className="flex items-center justify-between px-4 py-3">
@@ -232,7 +233,7 @@ export function JobsFilterPopover({
             className="text-muted-foreground"
             onClick={() => setDraft(EMPTY_JOB_FACETS)}
           >
-            Clear all
+            Quitar filtros
           </Button>
           <Button size="sm" onClick={apply}>
             {applyLabel}

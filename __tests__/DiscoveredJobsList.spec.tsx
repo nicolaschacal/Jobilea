@@ -179,7 +179,7 @@ describe("DiscoveredJobsList", () => {
     await userEvent.click(screen.getByRole("button", { name: "Status" }));
 
     expect(
-      screen.getByRole("menuitemcheckbox", { name: "New" }),
+      screen.getByRole("menuitemcheckbox", { name: "Nueva" }),
     ).toHaveAttribute("aria-checked", "true");
     expect(
       screen.getByRole("menuitemcheckbox", { name: "Accepted" }),
@@ -213,7 +213,7 @@ describe("DiscoveredJobsList", () => {
 
     await userEvent.click(screen.getByRole("button", { name: "Status" }));
     await userEvent.click(
-      screen.getByRole("menuitemcheckbox", { name: "New" }),
+      screen.getByRole("menuitemcheckbox", { name: "Nueva" }),
     );
 
     expect(onStatusFilterChange).toHaveBeenCalledWith(["accepted"]);

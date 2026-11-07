@@ -142,16 +142,16 @@ describe("agent chat close paths", () => {
   it("flags a pending approval on the trigger", () => {
     chat.messages = [approvalMessage];
     setup([approvalMessage]);
-    expect(screen.getByLabelText("Approval pending")).toBeInTheDocument();
+    expect(screen.getByLabelText("Esperando tu aprobación")).toBeInTheDocument();
   });
 
   it("never advertises streaming on the trigger — nothing runs while closed", () => {
     chat.status = "streaming";
     setup();
-    expect(screen.queryByLabelText("Approval pending")).not.toBeInTheDocument();
+    expect(screen.queryByLabelText("Esperando tu aprobación")).not.toBeInTheDocument();
     expect(
       screen.getByRole("button", { name: /open assistant/i }).textContent,
-    ).toBe("Chat AI");
+    ).toBe("Asistente");
   });
 
   // Closing is the only abort with no on-screen trace: the panel that would

@@ -12,9 +12,9 @@ describe("splitStatuses", () => {
       .map((s, i) => ({ id: `s${i}`, ...s }));
     const { primary, more } = splitStatuses(shuffled);
     expect(primary.map((s) => s.value)).toEqual([
-      "new",
       "draft",
       "applied",
+      "in-process",
       "interview",
       "offer",
     ]);
@@ -25,6 +25,7 @@ describe("splitStatuses", () => {
       "rejected",
       "offer-declined",
       "offer-accepted",
+      "new",
     ]);
   });
 

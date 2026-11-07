@@ -28,11 +28,11 @@ import type {
 
 // The summary's rings need labels only; targets vary by month
 const RINGS = [
-  { id: GOAL_IDS.JOBS, label: "Jobs applied" },
-  { id: GOAL_IDS.HOURS, label: "Activity" },
+  { id: GOAL_IDS.JOBS, label: "Postulaciones" },
+  { id: GOAL_IDS.HOURS, label: "Actividad" },
 ];
 
-const CALENDAR_LABELS = { settings: "Set goals" };
+const CALENDAR_LABELS = { settings: "Definir metas" };
 
 const goalsFor = (targets: GoalTargets): GcGoal[] => [
   { ...RINGS[0], target: targets.jobs },

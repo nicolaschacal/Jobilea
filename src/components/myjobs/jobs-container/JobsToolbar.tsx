@@ -91,7 +91,7 @@ export function JobsToolbar({
   return (
     <CardHeader className="flex-row flex-wrap justify-between items-center gap-3">
       <div className="flex flex-wrap items-baseline gap-x-2 gap-y-1">
-        <CardTitle>Jobs</CardTitle>
+        <CardTitle>Mis postulaciones</CardTitle>
         {!initialLoading && totalJobs > 0 && (
           <RecordsCount count={jobsCount} total={totalJobs} label="jobs" />
         )}
@@ -139,7 +139,7 @@ export function JobsToolbar({
           variant="outline"
           className="h-8 w-8 p-0"
           disabled={initialLoading}
-          title="Reload jobs"
+          title="Actualizar"
           onClick={onReload}
         >
           <RefreshCw
@@ -150,7 +150,7 @@ export function JobsToolbar({
         <SearchInput
           value={searchTerm}
           onChange={onSearchTermChange}
-          placeholder="Search jobs..."
+          placeholder="Buscar por puesto o empresa..."
         />
         <JobsFilterPopover
           statuses={statuses}
@@ -164,7 +164,7 @@ export function JobsToolbar({
           variant="outline"
           className="h-8 w-8 p-0"
           disabled={initialLoading}
-          title="Export jobs"
+          title="Exportar"
           onClick={() => setExportOpen(true)}
         >
           <Download className="h-3.5 w-3.5" />

@@ -46,7 +46,7 @@ describe("JobsFilterPopover", () => {
     );
 
   const open = async () => {
-    await user.click(screen.getByRole("button", { name: /^Filter jobs/ }));
+    await user.click(screen.getByRole("button", { name: /^Filtrar/ }));
     await act(async () => {
       vi.advanceTimersByTime(300);
     });
@@ -58,9 +58,9 @@ describe("JobsFilterPopover", () => {
     const labels = screen
       .getAllByRole("checkbox")
       .map((box) => box.getAttribute("aria-label"));
-    expect(labels.slice(0, 3)).toEqual(["Applied", "Interview", "Rejected"]);
+    expect(labels.slice(0, 3)).toEqual(["Postulado", "Entrevista", "No seleccionado"]);
     expect(labels).toContain("Accepted (discovered)");
-    expect(labels).toContain("Include dismissed discovered jobs");
+    expect(labels).toContain("Incluir sugerencias descartadas");
     await waitFor(() => expect(screen.getByText("21")).toBeInTheDocument());
   });
 
@@ -75,7 +75,7 @@ describe("JobsFilterPopover", () => {
   it("applies the draft only on Show N jobs", async () => {
     renderPopover();
     await open();
-    await user.click(screen.getByRole("checkbox", { name: "Applied" }));
+    await user.click(screen.getByRole("checkbox", { name: "Postulado" }));
     await user.click(screen.getByRole("button", { name: "Remote" }));
     expect(onApply).not.toHaveBeenCalled();
 
@@ -109,10 +109,10 @@ describe("JobsFilterPopover", () => {
   it("discards the draft when closed without applying", async () => {
     renderPopover();
     await open();
-    await user.click(screen.getByRole("checkbox", { name: "Applied" }));
+    await user.click(screen.getByRole("checkbox", { name: "Postulado" }));
     await user.keyboard("{Escape}");
     await open();
-    expect(screen.getByRole("checkbox", { name: "Applied" })).not.toBeChecked();
+    expect(screen.getByRole("checkbox", { name: "Postulado" })).not.toBeChecked();
     expect(onApply).not.toHaveBeenCalled();
   });
 
@@ -123,7 +123,7 @@ describe("JobsFilterPopover", () => {
       await screen.findByRole("button", { name: "Show 18 jobs" }),
     ).toBeInTheDocument();
     await user.keyboard("{Escape}");
-    await user.click(screen.getByRole("button", { name: /^Filter jobs/ }));
+    await user.click(screen.getByRole("button", { name: /^Filtrar/ }));
     expect(screen.getByRole("button", { name: "Show jobs" })).toBeInTheDocument();
   });
 
@@ -136,32 +136,32 @@ describe("JobsFilterPopover", () => {
     await open();
     await user.keyboard("{Escape}");
     await act(async () => resolveLate(counts(42)));
-    await user.click(screen.getByRole("button", { name: /^Filter jobs/ }));
+    await user.click(screen.getByRole("button", { name: /^Filtrar/ }));
     expect(screen.getByRole("button", { name: "Show jobs" })).toBeInTheDocument();
   });
 
   it("seeds the draft from the applied facets on open", async () => {
     renderPopover({ ...EMPTY_JOB_FACETS, statuses: ["interview"] });
     await open();
-    expect(screen.getByRole("checkbox", { name: "Interview" })).toBeChecked();
+    expect(screen.getByRole("checkbox", { name: "Entrevista" })).toBeChecked();
   });
 
   it("Select all ticks every status row, then reads Clear", async () => {
     renderPopover();
     await open();
-    await user.click(screen.getByRole("button", { name: "Select all" }));
-    expect(screen.getByRole("checkbox", { name: "Applied" })).toBeChecked();
+    await user.click(screen.getByRole("button", { name: "Todos" }));
+    expect(screen.getByRole("checkbox", { name: "Postulado" })).toBeChecked();
     expect(
       screen.getByRole("checkbox", { name: "Accepted (discovered)" }),
     ).toBeChecked();
-    await user.click(screen.getByRole("button", { name: "Clear" }));
-    expect(screen.getByRole("checkbox", { name: "Applied" })).not.toBeChecked();
+    await user.click(screen.getByRole("button", { name: "Ninguno" }));
+    expect(screen.getByRole("checkbox", { name: "Postulado" })).not.toBeChecked();
   });
 
   it("Clear all in the footer empties the draft without applying", async () => {
     renderPopover({ ...EMPTY_JOB_FACETS, jobTypes: ["FT"] });
     await open();
-    await user.click(screen.getByRole("button", { name: "Clear all" }));
+    await user.click(screen.getByRole("button", { name: "Quitar filtros" }));
     expect(screen.getByRole("button", { name: "Full-time" })).toHaveAttribute(
       "aria-pressed",
       "false",
@@ -177,7 +177,7 @@ describe("JobsFilterPopover", () => {
       workplaces: ["REMOTE"],
     });
     expect(
-      screen.getByRole("button", { name: "Filter jobs, 4 active" }),
+      screen.getByRole("button", { name: "Filtrar, 4 active" }),
     ).toBeInTheDocument();
   });
 
@@ -189,11 +189,11 @@ describe("JobsFilterPopover", () => {
       .mockResolvedValueOnce(counts(3));
     renderPopover();
     await open();
-    await user.click(screen.getByRole("checkbox", { name: "Applied" }));
+    await user.click(screen.getByRole("checkbox", { name: "Postulado" }));
     await act(async () => {
       vi.advanceTimersByTime(300);
     });
-    await user.click(screen.getByRole("checkbox", { name: "Interview" }));
+    await user.click(screen.getByRole("checkbox", { name: "Entrevista" }));
     await act(async () => {
       vi.advanceTimersByTime(300);
     });

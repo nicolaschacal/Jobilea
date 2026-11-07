@@ -73,13 +73,13 @@ function MyJobsTable({
               onSort={onSort}
               className="hidden md:table-cell"
             >
-              Applied
+              Postulado el
             </SortableTableHead>
             <SortableTableHead field="title" sort={sort} onSort={onSort}>
-              Title
+              Puesto
             </SortableTableHead>
             <SortableTableHead field="company" sort={sort} onSort={onSort}>
-              Company
+              Empresa
             </SortableTableHead>
             <SortableTableHead
               field="location"
@@ -87,16 +87,16 @@ function MyJobsTable({
               onSort={onSort}
               className="hidden md:table-cell"
             >
-              Location
+              Lugar
             </SortableTableHead>
-            <TableHead>Status</TableHead>
+            <TableHead>Estado</TableHead>
             <SortableTableHead
               field="matchScore"
               sort={sort}
               onSort={onSort}
               className="hidden md:table-cell text-center"
             >
-              Match
+              Coincidencia
             </SortableTableHead>
             <SortableTableHead
               field="source"
@@ -104,10 +104,10 @@ function MyJobsTable({
               onSort={onSort}
               className="hidden md:table-cell"
             >
-              Source
+              Origen
             </SortableTableHead>
             <TableHead>
-              <span className="sr-only">Actions</span>
+              <span className="sr-only">Acciones</span>
             </TableHead>
           </TableRow>
         </TableHeader>
@@ -203,8 +203,8 @@ function MyJobsTable({
                     <Button
                       variant="ghost"
                       size="icon"
-                      title="Edit Job"
-                      aria-label="Edit Job"
+                      title="Editar"
+                      aria-label="Editar"
                       onClick={() => editJob(job.id)}
                     >
                       <Pencil className="h-4 w-4" />
@@ -212,8 +212,8 @@ function MyJobsTable({
                     <Button
                       variant="ghost"
                       size="icon"
-                      title="Delete Job"
-                      aria-label="Delete Job"
+                      title="Eliminar"
+                      aria-label="Eliminar"
                       className="text-destructive hover:text-destructive"
                       onClick={() => onDeleteJob(job.id)}
                     >

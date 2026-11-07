@@ -187,7 +187,7 @@ function ResumeContainer({
     if (!resume?.id) return;
     const { success, message } = await setDefaultResume(resume.id);
     if (success) {
-      toastSuccess("This resume is now your default.");
+      toastSuccess("Este es ahora tu CV principal.");
       router.refresh();
     } else {
       toastError(message);
@@ -223,7 +223,7 @@ function ResumeContainer({
           <CardHeader>
             <CardTitle className="flex items-center gap-2 text-base">
               <Sparkles className="h-4 w-4" />
-              AI Review
+              Revisión con IA
             </CardTitle>
             <ReviewDetails reviewData={parsedReviewData} />
           </CardHeader>

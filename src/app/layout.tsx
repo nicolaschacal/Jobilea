@@ -15,10 +15,10 @@ const inter = localFont({
 
 export const metadata: Metadata = {
   title: {
-    template: "%s | JobSync",
-    default: "JobSync",
+    template: "%s | Jobilea",
+    default: "Jobilea",
   },
-  description: "Job Application Tracking System",
+  description: "Tu búsqueda de empleo, ordenada y con ayuda de IA",
 };
 
 interface Props {
@@ -27,7 +27,7 @@ interface Props {
 
 export default function RootLayout({ children }: Readonly<Props>) {
   return (
-    <html lang="en" suppressHydrationWarning>
+    <html lang="es" suppressHydrationWarning>
       <body
         className={cn(
           "min-h-screen bg-background font-sans antialiased",

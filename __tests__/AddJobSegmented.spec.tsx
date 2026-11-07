@@ -76,7 +76,7 @@ describe("StatusSegment", () => {
       />,
     );
     await user.click(screen.getByRole("button", { name: "More" }));
-    await user.click(screen.getByRole("menuitem", { name: "Withdrawn" }));
+    await user.click(screen.getByRole("menuitem", { name: "Me retiré" }));
     expect(onValueChange).toHaveBeenCalledWith(idOf("withdrawn"));
   });
 });

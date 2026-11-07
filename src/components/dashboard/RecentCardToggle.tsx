@@ -1,4 +1,5 @@
 "use client";
+import { statusLabel } from "@/lib/i18n";
 
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
@@ -145,7 +146,7 @@ export default function RecentCardToggle({
                     </Link>
                     {job.Status?.label ? (
                       <StatusBadge
-                        label={job.Status.label}
+                        label={statusLabel(job.Status)}
                         color={getJobStatusBadgeColor(job.Status.value)}
                         className="ml-auto shrink-0 justify-center text-xs px-1.5 py-0 h-5"
                       />
@@ -174,7 +175,7 @@ export default function RecentCardToggle({
                       className="relative flex items-center gap-2"
                     >
                       <Button
-                        title="Start Activity"
+                        title="Empezar actividad"
                         data-testid="recent-activity-start-btn"
                         size="icon"
                         variant="ghost"

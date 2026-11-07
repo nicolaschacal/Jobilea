@@ -38,7 +38,7 @@ export function useJobsList({
 }) {
   const { jobWrites } = useAgentChat();
   const [jobs, setJobs] = useState<JobResponse[]>([]);
-  const [viewMode, setViewMode] = useState<JobsViewMode>("table");
+  const [viewMode, setViewMode] = useState<JobsViewMode>("board");
   const [page, setPage] = useState(1);
   const [totalJobs, setTotalJobs] = useState(0);
   const [searchTerm, setSearchTerm] = useState("");

@@ -100,7 +100,7 @@ function JobsContainer({
   const onDeleteJob = async (jobId: string) => {
     const { res, success, message } = await deleteJobById(jobId);
     if (success) {
-      toastSuccess(`Job has been deleted successfully`);
+      toastSuccess(`Postulación eliminada`);
     } else {
       toastError(message);
     }
@@ -120,7 +120,7 @@ function JobsContainer({
     const { success, message } = await updateJobStatus(jobId, jobStatus);
     if (success) {
       router.refresh();
-      toastSuccess(`Job has been updated successfully`);
+      toastSuccess(`Postulación actualizada`);
     } else {
       toastError(message);
     }
@@ -183,13 +183,13 @@ function JobsContainer({
             jobs.length === 0 &&
             hasJobFacets(facets) && (
             <div className="flex flex-col items-center gap-2 py-10 text-sm text-muted-foreground">
-              <p>No jobs match these filters.</p>
+              <p>No hay postulaciones con estos filtros.</p>
               <Button
                 size="sm"
                 variant="outline"
                 onClick={() => applyFacets(EMPTY_JOB_FACETS)}
               >
-                Clear all
+                Quitar filtros
               </Button>
             </div>
           )}

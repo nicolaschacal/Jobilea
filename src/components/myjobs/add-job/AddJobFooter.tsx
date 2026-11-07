@@ -46,14 +46,14 @@ export function AddJobFooter({
       )}
       <div className="ml-auto flex gap-2">
         <Button type="button" variant="outline" onClick={onCancel}>
-          Cancel
+          Cancelar
         </Button>
         <Button
           type="submit"
           data-testid="save-job-btn"
           disabled={saveDisabled}
         >
-          Save
+          Guardar
           <kbd
             aria-hidden="true"
             className="rounded border border-primary-foreground/30 px-1 text-xs font-normal"

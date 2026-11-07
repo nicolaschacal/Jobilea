@@ -198,7 +198,7 @@ const ProfileContainer = () => {
     <Card>
       <ResponsiveCardHeader>
         <div className="flex items-baseline gap-2">
-          <CardTitle>Profile</CardTitle>
+          <CardTitle>Mi CV</CardTitle>
           {!loading && totalDocuments > 0 && (
             <RecordsCount count={documents.length} total={totalDocuments} label="documents" />
           )}
@@ -219,13 +219,13 @@ const ProfileContainer = () => {
                 className="cursor-pointer"
                 onClick={createResume}
               >
-                Add New Resume
+                Subir CV
               </DropdownMenuItem>
               <DropdownMenuItem
                 className="cursor-pointer"
                 onClick={createCoverLetter}
               >
-                Add New Cover Letter
+                Nueva carta de presentación
               </DropdownMenuItem>
             </DropdownMenuContent>
           </DropdownMenu>

@@ -79,7 +79,7 @@ describe("CreateResume Component", () => {
     fireEvent.change(titleInput, { target: { value: "Temporary Title" } });
     fireEvent.change(titleInput, { target: { value: "" } });
 
-    const saveButton = screen.getByRole("button", { name: /save/i });
+    const saveButton = screen.getByRole("button", { name: /guardar/i });
     expect(saveButton).toBeDisabled();
     fireEvent.click(saveButton);
 

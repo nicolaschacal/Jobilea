@@ -1,4 +1,5 @@
 "use client";
+import { statusLabel } from "@/lib/i18n";
 import { ChevronDown } from "lucide-react";
 import {
   DropdownMenu,
@@ -34,7 +35,7 @@ export function JobStatusBadgeMenu({
           <DropdownMenuTrigger asChild>
             <button
               type="button"
-              aria-label={`Change status, currently ${job.Status?.label ?? ""}`}
+              aria-label={`Cambiar estado (ahora: ${statusLabel(job.Status)})`}
               className="cursor-pointer rounded-full focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
             >
               <JobStatusBadge job={job} className={className}>

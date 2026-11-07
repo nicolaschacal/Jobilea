@@ -397,47 +397,47 @@ export const SIDEBAR_LINKS = [
   {
     icon: LayoutDashboard,
     route: "/dashboard",
-    label: "Dashboard",
+    label: "Inicio",
   },
   {
     icon: BriefcaseBusiness,
     route: "/dashboard/myjobs",
-    label: "Jobs",
+    label: "Mis postulaciones",
   },
   {
     icon: CalendarCheck,
     route: "/dashboard/interviews",
-    label: "Interviews",
+    label: "Entrevistas",
   },
   {
     icon: Zap,
     route: "/dashboard/automations",
-    label: "Automations",
+    label: "Buscar empleos",
   },
   {
     icon: SquareCheckBig,
     route: "/dashboard/tasks",
-    label: "Tasks",
+    label: "Tareas",
   },
   {
     icon: CalendarClock,
     route: "/dashboard/activities",
-    label: "Activities",
+    label: "Actividad",
   },
   {
     icon: BookOpen,
     route: "/dashboard/questions",
-    label: "Questions",
+    label: "Preguntas de entrevista",
   },
   {
     icon: UserRound,
     route: "/dashboard/profile",
-    label: "Profile",
+    label: "Mi CV",
   },
   {
     icon: Sheet,
     route: "/dashboard/admin",
-    label: "Library",
+    label: "Empresas y datos",
   },
   {
     icon: Wrench,

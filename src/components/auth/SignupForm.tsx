@@ -66,9 +66,9 @@ function SignupForm() {
               name="name"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Full Name</FormLabel>
+                  <FormLabel>Nombre y apellido</FormLabel>
                   <FormControl>
-                    <Input placeholder="Your Name" {...field} />
+                    <Input placeholder="Ej.: María Pérez" {...field} />
                   </FormControl>
                   <FormMessage />
                 </FormItem>
@@ -101,7 +101,7 @@ function SignupForm() {
               name="password"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Password</FormLabel>
+                  <FormLabel>Contraseña</FormLabel>
                   <div className="relative">
                     <FormControl>
                       <Input
@@ -120,7 +120,7 @@ function SignupForm() {
                       className="absolute right-0 top-0 h-full px-3 text-muted-foreground"
                       onClick={() => setShowPassword((v) => !v)}
                       aria-label={
-                        showPassword ? "Hide password" : "Show password"
+                        showPassword ? "Ocultar contraseña" : "Mostrar contraseña"
                       }
                       tabIndex={-1}
                     >
@@ -137,7 +137,7 @@ function SignupForm() {
             />
           </div>
           <Button type="submit" disabled={isPending} className="w-full">
-            {isPending ? <Loading /> : "Create an account"}
+            {isPending ? <Loading /> : "Crear mi cuenta"}
           </Button>
           <div
             className="flex h-8 items-end space-x-1"

@@ -57,7 +57,7 @@ const automations = [{ id: "a-1", name: "Remote Frontend" }, { id: "a-2", name: 
 const renderPage = (init = initial) =>
   render(<NotificationsContainer initial={init} automations={automations} />);
 const confirmDelete = () =>
-  userEvent.click(within(screen.getByRole("alertdialog")).getByRole("button", { name: "Delete" }));
+  userEvent.click(within(screen.getByRole("alertdialog")).getByRole("button", { name: "Eliminar" }));
 
 beforeEach(() => {
   vi.clearAllMocks();
@@ -102,7 +102,7 @@ it("cancelling the confirmation keeps the row", async () => {
   renderPage();
   const row = screen.getByText("Remote Frontend", { selector: "li span" }).closest("li")!;
   await userEvent.click(within(row).getByRole("button", { name: /delete notification/i }));
-  await userEvent.click(within(screen.getByRole("alertdialog")).getByRole("button", { name: "Cancel" }));
+  await userEvent.click(within(screen.getByRole("alertdialog")).getByRole("button", { name: "Cancelar" }));
   expect(actions.deleteNotification).not.toHaveBeenCalled();
   expect(screen.getByText("Remote Frontend", { selector: "li span" })).toBeInTheDocument();
 });

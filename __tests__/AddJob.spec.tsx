@@ -127,7 +127,7 @@ describe("AddJob Component", () => {
       .map((cell) => cell.querySelector("button"))
       .filter((b): b is HTMLButtonElement => !!b && !b.disabled);
     await user.click(days[0]);
-    expect(screen.getByRole("radio", { name: "Applied" })).toBeChecked();
+    expect(screen.getByRole("radio", { name: "Postulado" })).toBeChecked();
   });
   it("lists the empty required fields in the footer and jumps to one", async () => {
     expect(screen.getByText(/4 required left/)).toBeInTheDocument();
@@ -140,7 +140,7 @@ describe("AddJob Component", () => {
     expect(screen.getByText("In 3 days")).toBeInTheDocument();
   });
   it("explains an auto-filled date applied and drops the hint when status reverts", async () => {
-    await user.click(screen.getByRole("radio", { name: "Applied" }));
+    await user.click(screen.getByRole("radio", { name: "Postulado" }));
     expect(
       screen.getByText("Set to today when you marked it Applied"),
     ).toBeInTheDocument();
@@ -156,7 +156,7 @@ describe("AddJob Component", () => {
       .map((cell) => cell.querySelector("button"))
       .filter((b): b is HTMLButtonElement => !!b && !b.disabled);
     await user.click(days[0]);
-    expect(screen.getByRole("radio", { name: "Applied" })).toBeChecked();
+    expect(screen.getByRole("radio", { name: "Postulado" })).toBeChecked();
     expect(
       screen.queryByText("Set to today when you marked it Applied"),
     ).not.toBeInTheDocument();
@@ -515,7 +515,7 @@ describe("AddJob Component - Edit Mode", () => {
     expect(screen.getByLabelText("Company")).toHaveTextContent("Amazon");
     expect(screen.getByLabelText("Job Location")).toHaveTextContent("Remote");
     expect(screen.getByLabelText("Job Source")).toHaveTextContent("Indeed");
-    expect(screen.getByRole("radio", { name: "Applied" })).toBeChecked();
+    expect(screen.getByRole("radio", { name: "Postulado" })).toBeChecked();
     expect(screen.getByLabelText("Job URL")).toHaveValue(
       "https://example.com/job",
     );
@@ -693,7 +693,7 @@ describe("AddJob Component - Status Order", () => {
     await user.click(screen.getByTestId("add-job-btn"));
 
     expect(screen.getByRole("radio", { name: "Draft" })).toBeChecked();
-    await user.click(screen.getByRole("radio", { name: "Applied" }));
+    await user.click(screen.getByRole("radio", { name: "Postulado" }));
     expect(screen.getByLabelText("Date Applied")).toHaveTextContent(
       format(new Date(), "PP"),
     );

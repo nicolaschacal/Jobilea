@@ -1,10 +1,12 @@
 import { differenceInCalendarDays } from "date-fns";
 import { JobStatus } from "@/models/job.model";
 
+// The Application Pipeline stages a person picks by hand; "new" is set by
+// job discovery, so it stays under More.
 export const PRIMARY_STATUS_VALUES = [
-  "new",
   "draft",
   "applied",
+  "in-process",
   "interview",
   "offer",
 ] as const;

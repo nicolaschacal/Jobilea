@@ -1,4 +1,5 @@
 "use client";
+import { statusLabel } from "@/lib/i18n";
 import { ChevronDown } from "lucide-react";
 import {
   DropdownMenu,
@@ -31,8 +32,8 @@ export function StatusSegment({
 
   return (
     <SegmentedRadio
-      aria-label="Status"
-      options={primary.map((s) => ({ value: s.id, label: s.label }))}
+      aria-label="Estado"
+      options={primary.map((s) => ({ value: s.id, label: statusLabel(s) }))}
       value={value}
       onValueChange={onValueChange}
     >
@@ -56,7 +57,7 @@ export function StatusSegment({
           <DropdownMenuContent align="end">
             {more.map((s) => (
               <DropdownMenuItem key={s.id} onSelect={() => onValueChange(s.id)}>
-                {s.label}
+                {statusLabel(s)}
               </DropdownMenuItem>
             ))}
           </DropdownMenuContent>

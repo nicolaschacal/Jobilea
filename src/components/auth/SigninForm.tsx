@@ -86,7 +86,7 @@ function SigninForm() {
                 name="password"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel htmlFor="password">Password</FormLabel>
+                    <FormLabel htmlFor="password">Contraseña</FormLabel>
                     <FormControl>
                       <div className="relative">
                         <Input
@@ -105,7 +105,7 @@ function SigninForm() {
                           className="absolute right-0 top-0 h-full px-3 text-muted-foreground"
                           onClick={() => setShowPassword((v) => !v)}
                           aria-label={
-                            showPassword ? "Hide password" : "Show password"
+                            showPassword ? "Ocultar contraseña" : "Mostrar contraseña"
                           }
                           tabIndex={-1}
                         >
@@ -123,7 +123,7 @@ function SigninForm() {
               />
             </div>
             <Button type="submit" disabled={isPending} className="w-full">
-              {isPending ? <Loading /> : "Login"}
+              {isPending ? <Loading /> : "Ingresar"}
             </Button>
             <div
               className="flex h-8 items-end space-x-1"

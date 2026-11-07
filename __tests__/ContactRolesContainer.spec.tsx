@@ -80,7 +80,7 @@ describe("ContactRolesContainer", () => {
 
     await user.click(screen.getAllByRole("button", { name: /toggle menu/i })[1]);
     await user.click(await screen.findByText("Delete"));
-    await user.click(await screen.findByRole("button", { name: "Delete" }));
+    await user.click(await screen.findByRole("button", { name: "Eliminar" }));
 
     await waitFor(() =>
       expect(toastError).toHaveBeenCalledWith("Role cannot be deleted"),

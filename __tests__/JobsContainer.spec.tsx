@@ -458,7 +458,7 @@ describe("JobsContainer Search Functionality", () => {
 
       renderComponent();
       await user.click(screen.getByRole("button", { name: /^Filter jobs/ }));
-      await user.click(screen.getByRole("checkbox", { name: "Interview" }));
+      await user.click(screen.getByRole("checkbox", { name: "Entrevista" }));
       await user.click(screen.getByRole("button", { name: /^Show / }));
 
       expect(mockRouter.push).toHaveBeenCalledWith(
@@ -519,7 +519,7 @@ describe("JobsContainer Search Functionality", () => {
       renderComponent();
 
       expect(await screen.findByText("No jobs match these filters.")).toBeInTheDocument();
-      await user.click(screen.getAllByRole("button", { name: "Clear all" })[0]);
+      await user.click(screen.getAllByRole("button", { name: "Quitar filtros" })[0]);
       expect(mockRouter.push).toHaveBeenCalledWith("/dashboard/myjobs");
     });
   });

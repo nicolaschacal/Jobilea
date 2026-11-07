@@ -24,14 +24,13 @@ interface DeleteAlertDialogProps {
 }
 
 export function DeleteAlertDialog({
-  pageTitle,
   open,
   onOpenChange,
   onDelete,
   alertTitle,
-  alertDescription = "This action cannot be undone. This will permanently delete and remove data from server.",
+  alertDescription = "No se puede deshacer. Se borra para siempre.",
   deleteAction = true,
-  actionLabel = "Delete",
+  actionLabel = "Eliminar",
   actionVariant = "destructive",
 }: DeleteAlertDialogProps) {
   return (
@@ -39,7 +38,7 @@ export function DeleteAlertDialog({
       <AlertDialogContent>
         <AlertDialogHeader>
           <AlertDialogTitle>
-            {alertTitle ?? `Are you sure you want to delete this ${pageTitle}?`}
+            {alertTitle ?? "¿Seguro que querés eliminarlo?"}
           </AlertDialogTitle>
           {/* asChild: a description may carry a list, which cannot nest in a p. */}
           <AlertDialogDescription asChild>
@@ -47,7 +46,7 @@ export function DeleteAlertDialog({
           </AlertDialogDescription>
         </AlertDialogHeader>
         <AlertDialogFooter>
-          <AlertDialogCancel>Cancel</AlertDialogCancel>
+          <AlertDialogCancel>Cancelar</AlertDialogCancel>
           {deleteAction && (
             <AlertDialogAction
               className={buttonVariants({ variant: actionVariant })}

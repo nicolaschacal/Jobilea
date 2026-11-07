@@ -49,7 +49,7 @@ export function ProfileDropdown({
             <DropdownMenuTrigger asChild>
               <button
                 type="button"
-                aria-label="User menu"
+                aria-label="Menú de usuario"
                 className="navlink h-10 w-full text-muted-foreground hover:text-foreground"
               >
                 <span className="relative flex h-full w-14 shrink-0 items-center justify-center">
@@ -74,7 +74,7 @@ export function ProfileDropdown({
                           data-testid="avatar-dot"
                           className="absolute right-3 top-1 h-2.5 w-2.5 rounded-full bg-primary ring-2 ring-background"
                         />
-                        <span className="sr-only">Update available</span>
+                        <span className="sr-only">Hay una actualización</span>
                       </>
                     )
                   )}
@@ -98,13 +98,13 @@ export function ProfileDropdown({
           <DropdownMenuItem asChild>
             <Link href="/dashboard/settings" className="cursor-pointer">
               <Settings className="w-5 mr-2" />
-              Settings
+              Configuración
             </Link>
           </DropdownMenuItem>
           <DropdownMenuItem asChild>
             <Link href="/dashboard/notifications" className="cursor-pointer">
               <Bell className="w-5 mr-2" />
-              <span className="flex-1">Notifications</span>
+              <span className="flex-1">Notificaciones</span>
               {summary.unread > 0 && (
                 <span
                   className={cn(
@@ -122,7 +122,7 @@ export function ProfileDropdown({
             className="cursor-pointer"
           >
             <Info className="w-5 mr-2" />
-            Support
+            Ayuda
           </DropdownMenuItem>
           <DropdownMenuItem asChild>
             <a
@@ -132,7 +132,7 @@ export function ProfileDropdown({
               className="cursor-pointer"
             >
               <ExternalLink className="w-5 mr-2" />
-              Wiki
+              Guía
             </a>
           </DropdownMenuItem>
           {version?.updateAvailable && (
@@ -149,7 +149,7 @@ export function ProfileDropdown({
             <form action={signOutAction}>
               <button type="submit" className="flex w-full items-center">
                 <PowerIcon className="w-5 mr-2" />
-                <div className="hidden md:block">Logout</div>
+                <div className="hidden md:block">Cerrar sesión</div>
               </button>
             </form>
           </DropdownMenuItem>

@@ -153,7 +153,7 @@ function CreateResume({
       const newResumeId: string | undefined =
         response.data?.id ?? response.data?.resumes?.[0]?.id;
 
-      // Auto-fill with AI: hand the chosen model to the editor and navigate
+      // Completar con IA: hand the chosen model to the editor and navigate
       // immediately so the import streams in live there, rather than blocking
       // this dialog until the stream completes.
       if (
@@ -207,11 +207,11 @@ function CreateResume({
                 name="title"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>Resume Title</FormLabel>
+                    <FormLabel>Nombre del CV</FormLabel>
                     <FormControl>
                       <Input
                         {...field}
-                        placeholder="Ex: Full Stack Developer Angular, Java"
+                        placeholder="Ej.: Vendedor/a, Administrativo/a, Cajero/a"
                         data-testid="resume-title-input"
                       />
                     </FormControl>
@@ -234,7 +234,7 @@ function CreateResume({
                 name="file"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>Upload Resume (Optional)</FormLabel>
+                    <FormLabel>Subí tu CV en PDF o Word (opcional)</FormLabel>
                     <FormControl>
                       <Input
                         type="file"
@@ -271,7 +271,7 @@ function CreateResume({
                 >
                   <span className="flex items-center gap-1">
                     <Sparkles className="h-3.5 w-3.5" />
-                    Auto-fill with AI
+                    Completar con IA
                   </span>
                   {!aiAvailable && (
                     <span className="text-muted-foreground text-xs block mt-0.5">
@@ -281,7 +281,7 @@ function CreateResume({
                         className="underline hover:text-foreground"
                         onClick={(e) => e.stopPropagation()}
                       >
-                        Configure AI under Settings
+                        Conectá tu IA en Configuración
                       </Link>
                     </span>
                   )}
@@ -297,10 +297,10 @@ function CreateResume({
                   className="mt-2 md:mt-0"
                   onClick={closeDialog}
                 >
-                  Cancel
+                  Cancelar
                 </Button>
                 <Button type="submit" disabled={!isValid || isPending}>
-                  Save
+                  Guardar
                   {isPending && (
                     <Loader className="h-4 w-4 shrink-0 animate-spin" />
                   )}

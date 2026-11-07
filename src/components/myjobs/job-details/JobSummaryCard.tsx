@@ -1,4 +1,5 @@
 "use client";
+import { statusLabel } from "@/lib/i18n";
 
 import { format } from "date-fns";
 import Link from "next/link";
@@ -45,7 +46,7 @@ export function JobSummaryCard({
                 <StatusBadge label="Expired" color="amber" />
               ) : (
                 <StatusBadge
-                  label={currentStatus?.label ?? ""}
+                  label={statusLabel(currentStatus)}
                   color={getJobStatusBadgeColor(currentStatus?.value ?? "")}
                 />
               )}

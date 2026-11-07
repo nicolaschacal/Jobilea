@@ -7,7 +7,7 @@ vi.mock("@/context/ActivityContext", () => ({
   useActivity: vi.fn(),
 }));
 
-describe("RecentCardToggle - Start Activity", () => {
+describe("RecentCardToggle - Empezar actividad", () => {
   const user = userEvent.setup();
   const mockStartActivity = vi.fn();
   const mockStopActivity = vi.fn();
@@ -46,7 +46,7 @@ describe("RecentCardToggle - Start Activity", () => {
     renderComponent();
     await switchToActivitiesTab();
 
-    await user.click(screen.getByTitle("Start Activity"));
+    await user.click(screen.getByTitle("Empezar actividad"));
 
     expect(mockStartActivity).toHaveBeenCalledWith("activity-1");
     expect(mockStopActivity).not.toHaveBeenCalled();
@@ -62,7 +62,7 @@ describe("RecentCardToggle - Start Activity", () => {
     renderComponent();
     await switchToActivitiesTab();
 
-    await user.click(screen.getByTitle("Start Activity"));
+    await user.click(screen.getByTitle("Empezar actividad"));
 
     expect(mockStartActivity).not.toHaveBeenCalled();
     expect(
@@ -80,7 +80,7 @@ describe("RecentCardToggle - Start Activity", () => {
     renderComponent();
     await switchToActivitiesTab();
 
-    await user.click(screen.getByTitle("Start Activity"));
+    await user.click(screen.getByTitle("Empezar actividad"));
 
     const confirmButton = await screen.findByRole("button", {
       name: "Stop & Start",

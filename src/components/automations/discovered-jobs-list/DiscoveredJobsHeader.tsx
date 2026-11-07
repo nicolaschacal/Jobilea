@@ -1,4 +1,5 @@
 "use client";
+import { statusLabel } from "@/lib/i18n";
 
 import { CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
@@ -75,7 +76,7 @@ export function DiscoveredJobsHeader({
                     toggleStatusFilter(status.value, checked)
                   }
                 >
-                  {status.label}
+                  {statusLabel(status)}
                 </DropdownMenuCheckboxItem>
               ))}
             </DropdownMenuContent>

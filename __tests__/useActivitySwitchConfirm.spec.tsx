@@ -171,7 +171,7 @@ describe("useActivitySwitchConfirm", () => {
 
     await user.click(screen.getByText("Trigger Start"));
 
-    const cancelButton = await screen.findByRole("button", { name: "Cancel" });
+    const cancelButton = await screen.findByRole("button", { name: "Cancelar" });
     await user.click(cancelButton);
 
     await waitFor(() => {
