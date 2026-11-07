@@ -6,13 +6,13 @@ import {
   replaceResumeFile,
 } from "@/actions/profile/resumeUpload";
 import path from "path";
-import fs from "fs";
 import { APP_CONSTANTS } from "@/lib/constants";
 import { PDF_MAGIC, ZIP_MAGIC } from "@/lib/ai/import/extract-text";
 import { log } from "@/lib/telemetry";
 import prisma from "@/lib/db";
 import {
   isResumeFilePath,
+  readResumeFile,
   saveResumeUpload,
   type ResumeUpload,
 } from "@/lib/resumeFiles";
@@ -122,17 +122,12 @@ export const GET = async (req: NextRequest) => {
     });
 
     const storedPath = resume?.File?.filePath;
-    if (
-      !storedPath ||
-      !isResumeFilePath(storedPath) ||
-      !fs.existsSync(path.resolve(storedPath))
-    ) {
+    if (!storedPath || !isResumeFilePath(storedPath)) {
       return NextResponse.json({ error: "File not found" }, { status: 404 });
     }
-    const fullFilePath = path.resolve(storedPath);
 
-    const fileType = path.extname(fullFilePath).toLowerCase();
-    const fileName = path.basename(fullFilePath);
+    const fileType = path.extname(storedPath).toLowerCase();
+    const fileName = path.basename(storedPath);
 
     let contentType;
 
@@ -148,11 +143,14 @@ export const GET = async (req: NextRequest) => {
       );
     }
 
-    const fileContent = fs.readFileSync(fullFilePath);
+    const fileContent = await readResumeFile(storedPath);
+    if (!fileContent) {
+      return NextResponse.json({ error: "File not found" }, { status: 404 });
+    }
 
     // Strip CR/LF from filename to prevent header injection
     const safeFileName = fileName.replace(/[\r\n"]/g, "_");
-    const response = new NextResponse(fileContent, {
+    const response = new NextResponse(new Uint8Array(fileContent), {
       headers: {
         "Content-Type": contentType,
         "Content-Disposition": `attachment; filename="${safeFileName}"`,

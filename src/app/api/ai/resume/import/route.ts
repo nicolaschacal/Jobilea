@@ -3,8 +3,6 @@ import "server-only";
 import { auth } from "@/auth";
 import { NextRequest, NextResponse } from "next/server";
 import { streamText, Output } from "ai";
-import path from "path";
-import fs from "fs";
 import { getModel } from "@/lib/ai/providers";
 import { checkRateLimit } from "@/lib/ai/rate-limiter";
 import { TEMPERATURES } from "@/lib/ai/config";
@@ -14,7 +12,7 @@ import { ResumeImportSchema } from "@/models/resumeImport.schema";
 import { AiModel } from "@/models/ai.model";
 import prisma from "@/lib/db";
 import { APP_CONSTANTS } from "@/lib/constants";
-import { isResumeFilePath } from "@/lib/resumeFiles";
+import { isResumeFilePath, readResumeFile } from "@/lib/resumeFiles";
 import {
   RESUME_IMPORT_SYSTEM_PROMPT,
   buildResumeImportPrompt,
@@ -83,16 +81,13 @@ export const POST = async (req: NextRequest) => {
   if (!isResumeFilePath(resume.File.filePath)) {
     return NextResponse.json({ error: "Invalid file path" }, { status: 400 });
   }
-  const resolvedPath = path.resolve(resume.File.filePath);
-
-  if (!fs.existsSync(resolvedPath)) {
+  const buf = await readResumeFile(resume.File.filePath);
+  if (!buf) {
     return NextResponse.json(
-      { error: "File not found on disk. Please re-attach the file." },
+      { error: "File not found. Please re-attach the file." },
       { status: 400 },
     );
   }
-
-  const buf = fs.readFileSync(resolvedPath);
 
   const extractResult = await extractText(buf);
   if (!extractResult.success) {

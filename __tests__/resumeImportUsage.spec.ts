@@ -9,7 +9,10 @@ vi.mock("@/lib/ai", () => ({ preprocessText: async (t: string) => ({ success: tr
 vi.mock("@/lib/ai/import/extract-text", () => ({
   extractText: async () => ({ success: true, data: { text: "resume text", truncated: false } }),
 }));
-vi.mock("@/lib/resumeFiles", () => ({ isResumeFilePath: () => true }));
+vi.mock("@/lib/resumeFiles", () => ({
+  isResumeFilePath: () => true,
+  readResumeFile: async () => Buffer.from("x"),
+}));
 vi.mock("@/lib/db", () => ({
   default: { resume: { findUnique: async () => ({ File: { filePath: "/uploads/files/resumes/a.pdf" } }) } },
 }));

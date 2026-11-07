@@ -108,3 +108,14 @@ describe("saveResumeUpload / removeResumeFile", () => {
     ).resolves.toBeUndefined();
   });
 });
+
+describe("blob resume paths", () => {
+  it("accepts blob paths under resumes/ and rejects traversal", async () => {
+    const { isResumeFilePath, isBlobPath } = await import("@/lib/resumeFiles");
+    expect(isBlobPath("blob:resumes/cv-123.pdf")).toBe(true);
+    expect(isResumeFilePath("blob:resumes/cv-123.pdf")).toBe(true);
+    expect(isResumeFilePath("blob:resumes/")).toBe(false);
+    expect(isResumeFilePath("blob:other/cv.pdf")).toBe(false);
+    expect(isResumeFilePath("blob:resumes/../secrets.pdf")).toBe(false);
+  });
+});

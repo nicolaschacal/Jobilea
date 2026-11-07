@@ -13,6 +13,18 @@ vi.mock("fs", () => ({
   readFileSync,
 }));
 
+// readResumeFile reads through fs/promises; route it to the same sync mocks
+// so existsSync=false still reads as a missing file.
+vi.mock("fs/promises", () => {
+  const readFile = async (p: string) => {
+    if (!existsSync(p)) {
+      throw Object.assign(new Error("ENOENT"), { code: "ENOENT" });
+    }
+    return readFileSync(p);
+  };
+  return { default: { readFile }, readFile };
+});
+
 vi.mock("@/auth", () => ({ auth: vi.fn() }));
 
 vi.mock("@/lib/db", () => ({

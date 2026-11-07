@@ -1,11 +1,10 @@
-import fs from "fs/promises";
 import path from "path";
 import JSZip from "jszip";
 import db from "@/lib/db";
 import { INSERT_ORDER, MODEL_SPECS, type BackupModel } from "./ordering";
 import { BackupDataSchema, type BackupData } from "./schema";
 import { buildManifest } from "./manifest";
-import { isResumeFilePath } from "@/lib/resumeFiles";
+import { isResumeFilePath, readResumeFile } from "@/lib/resumeFiles";
 
 type Row = Record<string, unknown>;
 
@@ -124,10 +123,10 @@ export async function buildBackupZip(
       file.fileMissing = true;
       continue;
     }
-    try {
-      const bytes = await fs.readFile(file.filePath);
+    const bytes = await readResumeFile(file.filePath);
+    if (bytes) {
       zip.file(`files/${file.id}/${path.basename(file.filePath)}`, bytes);
-    } catch {
+    } else {
       file.fileMissing = true;
     }
   }

@@ -1,7 +1,6 @@
 "use server";
 import prisma from "@/lib/db";
-import fs from "fs";
-import { isResumeFilePath } from "@/lib/resumeFiles";
+import { isResumeFilePath, removeResumeFile } from "@/lib/resumeFiles";
 import { log } from "@/lib/telemetry";
 import { requireUser } from "./shared";
 
@@ -24,8 +23,8 @@ export const deleteFile = async (fileId: string) => {
     log.warn("[Resume] Skipped unlinking a path outside the resumes directory", {
       "file.path": file.filePath,
     });
-  } else if (fs.existsSync(file.filePath)) {
-    fs.unlinkSync(file.filePath);
+  } else {
+    await removeResumeFile(file.filePath);
   }
 
   await prisma.file.delete({ where: { id: fileId } });
