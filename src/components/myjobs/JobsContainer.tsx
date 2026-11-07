@@ -22,6 +22,7 @@ import Loading from "../Loading";
 import { useRouter } from "next/navigation";
 import MyJobsTable from "./MyJobsTable";
 import MyJobsGrid from "./MyJobsGrid";
+import MyJobsBoard from "./MyJobsBoard";
 import { NoteDialog } from "./NoteDialog";
 import { useJobFilters } from "./jobs-container/useJobFilters";
 import { useJobsList } from "./jobs-container/useJobsList";
@@ -193,7 +194,16 @@ function JobsContainer({
             </div>
           )}
           {jobs.length > 0 &&
-            (viewMode === "cards" ? (
+            (viewMode === "board" ? (
+              <MyJobsBoard
+                jobs={jobs}
+                jobStatuses={statuses}
+                deleteJob={onDeleteJob}
+                editJob={onEditJob}
+                onChangeJobStatus={onChangeJobStatus}
+                onAddNote={onAddNote}
+              />
+            ) : viewMode === "cards" ? (
               <MyJobsGrid
                 jobs={jobs}
                 jobStatuses={statuses}

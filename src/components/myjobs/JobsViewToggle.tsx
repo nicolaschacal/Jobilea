@@ -1,5 +1,5 @@
 "use client";
-import { LayoutGrid, List } from "lucide-react";
+import { Columns3, LayoutGrid, List } from "lucide-react";
 import { Button } from "../ui/button";
 import { JobsViewMode } from "@/models/job.model";
 
@@ -34,6 +34,18 @@ export function JobsViewToggle({ value, onChange }: JobsViewToggleProps) {
       >
         <LayoutGrid className="h-3.5 w-3.5" />
         <span className="sr-only">Card view</span>
+      </Button>
+      <Button
+        size="sm"
+        variant={value === "board" ? "secondary" : "ghost"}
+        className="h-7 w-7 p-0"
+        title="Kanban (Application Pipeline)"
+        aria-pressed={value === "board"}
+        data-testid="jobs-view-board-btn"
+        onClick={() => onChange("board")}
+      >
+        <Columns3 className="h-3.5 w-3.5" />
+        <span className="sr-only">Kanban view</span>
       </Button>
     </div>
   );

@@ -60,7 +60,8 @@ export function useJobsList({
       APP_CONSTANTS.JOBS_VIEW_MODE_STORAGE_KEY,
       null,
     );
-    if (saved === "cards" || saved === "table") setViewMode(saved);
+    if (saved === "cards" || saved === "table" || saved === "board")
+      setViewMode(saved);
   }, []);
 
   const onChangeViewMode = (mode: JobsViewMode) => {
@@ -157,6 +158,25 @@ export function useJobsList({
     loadJobs(1, searchTerm || undefined);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [sort]);
+
+  // The Kanban board needs every application to fill its columns, so it
+  // pages through the whole list instead of waiting for the scroll sentinel.
+  useEffect(() => {
+    if (viewMode !== "board") return;
+    if (initialLoading || loadingMore || !listLoaded) return;
+    if (jobs.length >= totalJobs) return;
+    loadJobs(page + 1, searchTerm || undefined);
+  }, [
+    viewMode,
+    jobs.length,
+    totalJobs,
+    page,
+    searchTerm,
+    initialLoading,
+    loadingMore,
+    listLoaded,
+    loadJobs,
+  ]);
 
   // Infinite scroll: auto-load next page when sentinel is visible
   useEffect(() => {

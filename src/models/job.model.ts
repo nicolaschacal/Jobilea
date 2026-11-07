@@ -68,7 +68,7 @@ export interface JobResponse {
   _count?: { Notes?: number };
 }
 
-export type JobsViewMode = "table" | "cards";
+export type JobsViewMode = "table" | "cards" | "board";
 
 // First-click direction per sortable column. The keys are also the server's
 // sort whitelist in getJobsList.

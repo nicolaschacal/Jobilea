@@ -33,6 +33,7 @@
     "@ai-sdk/google": "^3.0.53",
     "@ai-sdk/openai": "^3.0.135",
     "@ai-sdk/react": "^3.0.242",
+    "@dnd-kit/core": "^6.3.1",
     "@hookform/resolvers": "^5.2.2",
     "@modelcontextprotocol/sdk": "^1.32.2",
     "@nivo/bar": "^0.99.0",
